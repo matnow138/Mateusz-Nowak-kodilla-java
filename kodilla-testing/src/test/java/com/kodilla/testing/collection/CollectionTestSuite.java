@@ -1,8 +1,13 @@
 package com.kodilla.testing.collection;
-import java.util.*;
-
 
 import org.junit.jupiter.api.*;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 
 @DisplayName("Test of odd numbers exterminator")
 public class CollectionTestSuite {
@@ -21,17 +26,13 @@ public class CollectionTestSuite {
     void testCaseEmptyList () {
         //Given
         List<Integer> emptyList = new ArrayList<>();
-        OddNumberExterminator list = new OddNumberExterminator();
+        OddNumberExterminator numbers = new OddNumberExterminator();
         //When
 
-        List<Integer> result = list.exterminate(emptyList);
+        List<Integer> result = numbers.exterminate(emptyList);
         //Then
-        for(Integer temp:result){
-            if(temp%2!=0){
-                System.out.println("Error");
-                break;
-            }
-        }
+        Assertions.assertTrue(numbers.isEmpty());
+
         System.out.println("It Works!");
     }
     @DisplayName("Testing method with random int")
@@ -39,7 +40,7 @@ public class CollectionTestSuite {
     void testCaseFilledList () {
         //Given
         List<Integer> filledList = new ArrayList<>();
-        OddNumberExterminator list = new OddNumberExterminator();
+        OddNumberExterminator numbers = new OddNumberExterminator();
         Random random = new Random();
 
         for(int i=0;i<100;i++) {
@@ -48,7 +49,7 @@ public class CollectionTestSuite {
 
         //When
 
-        List<Integer> result = list.exterminate(filledList);
+        List<Integer> result = numbers.exterminate(filledList);
         //Then
         for(Integer temp:result){
 
