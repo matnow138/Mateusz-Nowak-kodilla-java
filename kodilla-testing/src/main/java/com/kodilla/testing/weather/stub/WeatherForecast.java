@@ -22,7 +22,7 @@ public class WeatherForecast {
         }
         return resultMap;
     }
-    public double averageTemp(Temperatures temperature){
-
-    }
+   /* public double averageTemp(Temperatures temperature){
+        for(temperature.Entry(Strin))
+    }*/
 }

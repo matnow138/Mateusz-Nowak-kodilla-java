@@ -43,6 +43,22 @@ public class ShapeCollectorTestSuite {
         }
     }
     @Nested
+    @DisplayName("Tests for adding and removing figures")
+    class TestAddRemove {
+        @DisplayName("Testing adding and removal of figure")
+        @Test
+        public void addRemoveFigure() {
+            //Given
+            ShapeCollector figure = new ShapeCollector();
+            Shape circle = new Circle("Circle", 5);
+            //When
+            figure.addFigure(circle);
+            boolean result = figure.removeFigure(circle);
+            //Then
+            Assertions.assertTrue(result);
+        }
+    }
+    @Nested
     @DisplayName("Tests for retrieving figure")
     class TestGet {
         @DisplayName("Test Get")
