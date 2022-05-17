@@ -41,7 +41,7 @@ public class CollectionTestSuite {
         List<Integer> evenList = exterminator.exterminate(emptyList);
 
         //Then
-        assertFalse(evenList.isEmpty());
+        assertTrue(evenList.isEmpty());
     }
 
     @DisplayName("Testing method with int")
