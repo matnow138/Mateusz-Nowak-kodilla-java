@@ -1,5 +1,7 @@
 package com.kodilla.testing.library;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class LibraryUser {
@@ -7,6 +9,8 @@ public class LibraryUser {
     private String firstname;
     private String lastname;
     private String peselId;
+
+    List<Book> rentedBooks = new ArrayList<>();
 
     public LibraryUser(String firstname, String lastname, String peselId) {
         this.firstname = firstname;
@@ -36,6 +40,11 @@ public class LibraryUser {
 
     public void setPeselId(String peselId) {
         this.peselId = peselId;
+    }
+
+    public List<Book> addBooks(List<Book> books){
+        rentedBooks = books;
+        return rentedBooks;
     }
 
     @Override

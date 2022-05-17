@@ -14,6 +14,14 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BookDirectoryTestSuite {
+    @BeforeAll
+    public static void beforeAll(){
+        System.out.println("Test start");
+    }
+    @AfterAll
+    public static void afterAll(){
+        System.out.println("End of tests");
+    }
     @Mock
     private LibraryDatabase libraryDatabaseMock;
     private List<Book> generateListOfNBooks(int booksQuantity) {
@@ -24,6 +32,7 @@ class BookDirectoryTestSuite {
         }
         return resultList;
     }
+    @DisplayName("Test for list of books with condition")
     @Test
     void testListBooksWithConditionsReturnList() {
         //Given
@@ -45,7 +54,7 @@ class BookDirectoryTestSuite {
         //Then
         assertEquals(4, theListOfbooks.size());
     }
-
+    @DisplayName("Test for list of books longer than 20")
     @Test
     void testListBooksWithConditionMoreThan20() {
         // Given
@@ -71,6 +80,7 @@ class BookDirectoryTestSuite {
         assertEquals(0, theListOfBooks40.size());
     }
 
+    @DisplayName("Test for list of books shorter than 3")
     @Test
     void testListBooksWithConditionFragmentShorterThan3() {                          // [1]
         // Given
@@ -84,6 +94,7 @@ class BookDirectoryTestSuite {
         assertEquals(0, theListOfBooks10.size());                                     // [5]
         verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());    // [6]
     }
+    @DisplayName("Test for list of books rented by user")
     @Test
     void testBooksInHandOf(){
         //Given
