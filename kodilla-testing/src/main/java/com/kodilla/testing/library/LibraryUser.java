@@ -42,10 +42,7 @@ public class LibraryUser {
         this.peselId = peselId;
     }
 
-    public List<Book> addBooks(List<Book> books){
-        rentedBooks = books;
-        return rentedBooks;
-    }
+
 
     @Override
     public boolean equals(Object o) {
