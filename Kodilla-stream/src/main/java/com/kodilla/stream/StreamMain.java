@@ -15,13 +15,13 @@ public class StreamMain {
 
     public static void main(String[] args) {
         Forum forum = new Forum();
-        Map<Integer, ForumUser> forumUserMap = forum.getUserList().stream()
+        Map<Integer, ForumUser> par = forum.getUserList().stream()
                 .filter(s -> s.getGender()=='M')
                 .filter(s -> (Period.between(s.getBirthDate(), LocalDate.now()).getYears()>=20))
                 .filter(s -> s.getPostCount() >=1)
                 .collect(Collectors.toMap(ForumUser::getUserId, s ->s));
 
-        forumUserMap.entrySet().stream()
+        par.entrySet().stream()
                 .map(entry -> entry.getKey() + ":" + entry.getValue())
                 .forEach(System.out::println);
 
