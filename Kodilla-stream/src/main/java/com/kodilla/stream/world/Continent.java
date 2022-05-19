@@ -2,34 +2,24 @@ package com.kodilla.stream.world;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public final class Continent {
+
     private final String continentName;
-    private final Country country;
-    private final List<Continent> continentList = new ArrayList<>();
+    private final List<Country> countries;
 
-    public Continent(final String continentName, final Country country) {
+    public Continent(final String continentName,List<Country> countries ) {
         this.continentName = continentName;
-        this.country = country;
+        this.countries = new ArrayList<>(countries);
     }
+    //dane niech przyjdą z zewnątrz, to nie tylko ładniej, ale upraszcza klasę
 
-       public Country getCountryName() {
-        return country;
-    }
 
-    public void countryListEurope (){
-        continentList.add(new Continent("Europe", new Country("Poland", BigDecimal.valueOf(123456789))));
-        continentList.add(new Continent("Asia", new Country("Japan", BigDecimal.valueOf(123456789))));
-
-    }
-
-    public List<Continent> getContinentList (){
-        return new ArrayList<>(continentList);
-
+    //nie trzeba nowej listy, tak nikt Ci nie pogrzebie w niej
+    public List<Country> getCountries() {
+        return Collections.unmodifiableList(countries);
     }
 
 }

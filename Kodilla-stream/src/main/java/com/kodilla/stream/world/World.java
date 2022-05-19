@@ -9,13 +9,13 @@ public final class World {
     final List<World> worldList = new ArrayList<>();
     final List<Continent> continents = new ArrayList<>();
 
-
-
-
+    private void fillData(){
+        //...
+    }
 
     public BigDecimal getPeopleQuantity(){
         return continents.stream()
-                .flatMap(country -> country.getContinentList().stream())
+                .flatMap(continent -> continent.getCountries().stream())
                 .map(Country::getPeopleQuantity)
                 .reduce(BigDecimal.ZERO, (sum,current) -> sum =sum.add(current));
 
