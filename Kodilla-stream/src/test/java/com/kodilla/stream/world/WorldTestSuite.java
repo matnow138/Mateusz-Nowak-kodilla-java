@@ -14,6 +14,7 @@ public class WorldTestSuite {
     List<Country> countryListAsia = new ArrayList<>();
     List<Country> countryListAfrica = new ArrayList<>();
     List<Continent> continentList = new ArrayList<>();
+
     @DisplayName("Test for people quantity")
     @Test
     void testPeopleQuantity(){
@@ -34,11 +35,12 @@ public class WorldTestSuite {
         continentList.add(new Continent("Asia", countryListAsia));
         continentList.add(new Continent("Africa", countryListAfrica));
 
+        World world = new World(continentList);
+
+
         //When
-        BigDecimal totalPeopleQuantity = continentList.stream()
-                .flatMap(country -> country.getCountries().stream())
-                .map(Country::getPeopleQuantity)
-                .reduce(BigDecimal.ZERO, (sum, current) -> sum.add(current));
+
+            BigDecimal totalPeopleQuantity = world.getPeopleQuantity() ;
 
         //Then
         BigDecimal expectedPeopleQuantity =BigDecimal.valueOf(5176112590L);
