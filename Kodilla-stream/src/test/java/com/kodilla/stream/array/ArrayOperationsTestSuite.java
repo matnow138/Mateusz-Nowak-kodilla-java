@@ -27,7 +27,7 @@ public class ArrayOperationsTestSuite {
         //Given
         int[] testList = new int[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
         //When
-        double average = arrayAverage.getAverage(testList);
+        double average = ArrayOperations.getAverage(testList);
         //Then
         assertEquals(9.5, average);
     }
