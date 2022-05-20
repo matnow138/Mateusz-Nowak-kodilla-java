@@ -62,7 +62,7 @@ public class BoardTestSuite {
         assertEquals("HQLs for analysis", tasks.get(0).getTitle());
     }
 
-    @DisplayName("Test for average time for task completion")
+
     @Test
     void testAddTaskListFindLongTasks(){
         //Given
@@ -82,7 +82,7 @@ public class BoardTestSuite {
        // Then
         assertEquals(2, longTasks);
     }
-
+    @DisplayName("Test for average time for task completion")
     @Test
     void testAddTaskListAverageWorkingOnTask(){
         //Given
