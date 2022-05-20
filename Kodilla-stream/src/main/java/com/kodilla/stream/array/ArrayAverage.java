@@ -12,11 +12,5 @@ public final class ArrayAverage implements ArrayOperations {
         IntStream.range(0,numbers.length)
                 .forEach(System.out::println);
     }
-  /*  public double getAverage(int[] numbers){
-        double average = IntStream.range(0, numbers.length)
-                .filter(Objects::nonNull)
-                .average().getAsDouble();
 
-        return average;
-    }*/
 }
