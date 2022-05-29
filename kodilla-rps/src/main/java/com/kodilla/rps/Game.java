@@ -34,7 +34,8 @@ public class Game {
 
 
     public int fightResult(){
-
+        //Verification if player move beats computer move
+        //Overall logic - program check list for player move and if computer move is in that list -player wins, otherwise - computer wins
         if(playerMoveTranslate(playerMove).equals("rock") && Shapes.rockWins.contains(computerMoveTranslate(computerMove))){
             return 1;
         } else if(playerMoveTranslate(playerMove).equals("paper") && Shapes.paperWins.contains(computerMoveTranslate(computerMove))){

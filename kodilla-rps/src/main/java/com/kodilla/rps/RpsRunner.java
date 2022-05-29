@@ -6,7 +6,7 @@ public class RpsRunner {
 
         System.out.println("Player 1 please state your name");
         Scanner sc = new Scanner(System.in);
-        String player1Name = sc.nextLine();
+        String playerName = sc.nextLine();
         System.out.println("Round count:");
         int gameCount = sc.nextInt();
 
@@ -16,8 +16,8 @@ public class RpsRunner {
                 "Press 1 for rock \n " +
                 "Press 2 for paper \n " +
                 "Press 3 for scissors \n " +
-                "press x to end game \n" +
-                "press n for new game");
+                "Press x to end game \n" +
+                "Press n for new game \n");
 
 
         boolean end = false;
@@ -29,11 +29,9 @@ public class RpsRunner {
 
             //Player move
 
-            System.out.println(player1Name + ": Please choose your move.");
+            System.out.println(playerName + ": Please choose your move.");
             Scanner scanner = new Scanner(System.in);
             String move = scanner.nextLine();
-
-
 
             //Translating player move with actions
 
