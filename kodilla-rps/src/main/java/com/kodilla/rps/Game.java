@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class Game {
 
-    String playerMove;
-    int computerMove;
+    private final Shapes playerMove; //kazda zmienna od razu powina byc private final  i zmieniasz to tylko jesli potrzebujesz
+    private final Shapes computerMove;
 
     //Creating dependencies
 
@@ -21,18 +21,18 @@ public class Game {
     }
 
     //Translating computer moves to String
-    public String computerMoveTranslate(int computerMove){
+    public Shapes computerMoveTranslate(int computerMove){  //nie zwracaj stringa tylko obiekt
         if(computerMove==0){
-            return "rock";
+            return "rock"; 
         } else if (computerMove==1) {
             return "scissors";
         }
-        return "paper";
+        return "paper"; //co jak bedzie -1 ? paper?
     }
 
     //Translating player move
 
-    public String playerMoveTranslate(String playerMove){
+    public Shapes playerMoveTranslate(String playerMove){ //nie zwracaj stringa tylko obiekt
         if(playerMove.equals("1")){
             return "rock";
         } else if (playerMove.equals("2")) {
@@ -46,12 +46,6 @@ public class Game {
         //Verification if player move beats computer move
         //Overall logic - program check list for player move and if computer move is in that list -player wins, otherwise - computer wins
 
-        switch (playerMove) {
-            case "1":
-                return rock.confront(computerMoveTranslate(computerMove));
-            case "2":
-                return paper.confront(computerMoveTranslate(computerMove));
-        }
-                return scissors.confront(computerMoveTranslate(computerMove));
+        return playerMove.confront(computerMove);
     }
 }
