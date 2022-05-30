@@ -1,4 +1,5 @@
 package com.kodilla.rps;
+
 import java.util.Random;
 import java.util.Scanner;
 public class RpsRunner {
@@ -50,9 +51,8 @@ public class RpsRunner {
             Random random = new Random();
             int computerMove = random.nextInt(3);
 
-
-
             //actual game
+
 
             Game game = new Game(move,computerMove);
             System.out.println(game.playerMoveTranslate(move) + " vs " + game.computerMoveTranslate(computerMove));
@@ -77,9 +77,11 @@ public class RpsRunner {
                 if (playerWins > computerWins) {
                     System.out.println("Player wins game!");
                     end = true;
-                } else {
+                } else if(computerWins > playerWins) {
                     System.out.print("Computer wins game!");
                     end = true;
+                } else{
+                    System.out.println("Draw! Additional round");
                 }
             }
         }

@@ -1,13 +1,23 @@
 package com.kodilla.rps;
 
+import java.util.Collection;
+import java.util.Collections;
+
 public class Game {
 
     String playerMove;
     int computerMove;
 
+    //Creating dependencies
+
+    private Shapes rock = new Shapes("rock", Collections.singletonList("scissors"));
+    private Shapes paper = new Shapes("paper", Collections.singletonList("rock"));
+    private Shapes scissors = new Shapes("scissors", Collections.singletonList("paper"));
+
     public Game(String playerMove, int computerMove) {
         this.playerMove = playerMove;
         this.computerMove = computerMove;
+
     }
 
     //Translating computer moves to String
@@ -32,24 +42,16 @@ public class Game {
 
     }
 
-
     public int fightResult(){
         //Verification if player move beats computer move
         //Overall logic - program check list for player move and if computer move is in that list -player wins, otherwise - computer wins
-        if(playerMoveTranslate(playerMove).equals("rock") && Shapes.rockWins.contains(computerMoveTranslate(computerMove)) ||
-                playerMoveTranslate(playerMove).equals("paper") && Shapes.paperWins.contains(computerMoveTranslate(computerMove)) ||
-                playerMoveTranslate(playerMove).equals("scissors") && Shapes.scissorsWins.contains(computerMoveTranslate(computerMove))){
-            return 1;
-        }
-         else if(playerMoveTranslate(playerMove).equals(computerMoveTranslate(computerMove))){
-            return 2;
-        }
-        return 0;
 
+        switch (playerMove) {
+            case "1":
+                return rock.confront(computerMoveTranslate(computerMove));
+            case "2":
+                return paper.confront(computerMoveTranslate(computerMove));
+        }
+                return scissors.confront(computerMoveTranslate(computerMove));
     }
-
-
-
-
-
 }
