@@ -1,57 +1,35 @@
 package com.kodilla.rps;
 
+import java.awt.*;
 import java.util.Collection;
 import java.util.Collections;
 
 public class Game {
 
-    String playerMove;
-    int computerMove;
+    private final Shapes playerMove;
+    private final Shapes computerMove;
 
-    //Creating dependencies
-
-    private Shapes rock = new Shapes("rock", Collections.singletonList("scissors"));
-    private Shapes paper = new Shapes("paper", Collections.singletonList("rock"));
-    private Shapes scissors = new Shapes("scissors", Collections.singletonList("paper"));
-
-    public Game(String playerMove, int computerMove) {
+    public Game(Shapes playerMove, Shapes computerMove) {
         this.playerMove = playerMove;
         this.computerMove = computerMove;
 
     }
 
     //Translating computer moves to String
-    public String computerMoveTranslate(int computerMove){
-        if(computerMove==0){
-            return "rock";
-        } else if (computerMove==1) {
-            return "scissors";
-        }
-        return "paper";
-    }
+
 
     //Translating player move
 
-    public String playerMoveTranslate(String playerMove){
-        if(playerMove.equals("1")){
-            return "rock";
-        } else if (playerMove.equals("2")) {
-            return "paper";
-        }
-            return "scissors";
-
-    }
-
-    public int fightResult(){
+       public int fightResult(Shapes playerMove, Shapes computerMove){
         //Verification if player move beats computer move
         //Overall logic - program check list for player move and if computer move is in that list -player wins, otherwise - computer wins
 
-        switch (playerMove) {
-            case "1":
-                return rock.confront(computerMoveTranslate(computerMove));
-            case "2":
-                return paper.confront(computerMoveTranslate(computerMove));
+        if(playerMove.getWinsWith().contains(computerMove.getName())){
+            return 1;
+        }else if(playerMove.getName().equals(computerMove.getName())){
+            return 2;
         }
-                return scissors.confront(computerMoveTranslate(computerMove));
+            return 0;
+
     }
 }
