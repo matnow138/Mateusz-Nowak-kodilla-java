@@ -5,20 +5,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Shapes {
-    private  List<String> winsWith = new ArrayList<>();
-    private String shape;
+public class Shape {
+    private final List<String> winsWith;
+    private final String name;
 
 
-    public Shapes(String shape, List<String> winsWith) {
-        this.shape = shape;
-        this.winsWith = winsWith;
+    public Shapes(String name, List<String> winsWith) {
+        this.name = name;
+        this.winsWith = new ArrayList(winsWith);
     }
 
-    public int confront (String computerMove){
-        if(winsWith.contains(computerMove)){
+    public int confront (String name){  
+        //bonus: mozna ewentualnie miec gdzies wszystkie dostepne ksztalty i pierwsza linie all.contains(name) a jak nie to -1 albo exception
+        if(winsWith.contains(name)){
             return 1;
-        } else if (shape.equals(computerMove)) {
+        } 
+        if (this.name.equals(name)) {
             return 2;
         }
         return 0;
