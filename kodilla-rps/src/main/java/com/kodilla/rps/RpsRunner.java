@@ -4,7 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 public class RpsRunner {
     public static void main(String[] args){
+        
+        private static final int PLAYER_WINS = 1;
 
+        //wydzielic do initialScreen ()
         System.out.println("Player 1 please state your name");
         Scanner sc = new Scanner(System.in);
         String playerName = sc.nextLine();
@@ -19,24 +22,27 @@ public class RpsRunner {
                 "Press 3 for scissors \n " +
                 "Press x to end game \n" +
                 "Press n for new game \n");
+        
+        //dodaj zamknięcie scannera
+        //koniec initialScreen()
+        
+        private boolean end = false;
+        private int counter=0;
+        private int computerWins=0;
+        private int playerWins=0;
 
-
-        boolean end = false;
-        int counter=0;
-        int computerWins=0;
-        int playerWins=0;
-
+        private  Scanner scanner = new Scanner(System.in);
         while(!end) {
-
+            //wydzielic do metody playerRound() 
             //Player move
 
             System.out.println(playerName + ": Please choose your move.");
-            Scanner scanner = new Scanner(System.in);
+           
             String move = scanner.nextLine();
 
             //Translating player move with actions
 
-            if (move.equals("x")) {
+            if (move.equals("x")) { //bonus: https://docs.oracle.com/javase/8/docs/technotes/guides/language/strings-switch.html
                 System.out.println("End game!");
                 break;
             } else if (move.equals("n")) {
@@ -46,6 +52,7 @@ public class RpsRunner {
                 gameCount = sc.nextInt();
                 continue;
             }
+            //wydzielic do comupterRound
             //Generating computer move
 
             Random random = new Random();
@@ -53,13 +60,13 @@ public class RpsRunner {
 
             //actual game
 
-
+//wydzielic do metody play 
             Game game = new Game(move,computerMove);
             System.out.println(game.playerMoveTranslate(move) + " vs " + game.computerMoveTranslate(computerMove));
 
             //calculating game result
 
-            if (game.fightResult() == 1) {
+            if (game.fightResult() == PLAYER_WINS) { //zrob sobie stala albo enuma
                 playerWins++;
                 counter++;
                 System.out.println("Player wins round!");
@@ -72,7 +79,7 @@ public class RpsRunner {
             }
 
             //Displaying game result
-
+//wydzielic do metody result
             if (counter >= gameCount) {
                 if (playerWins > computerWins) {
                     System.out.println("Player wins game!");
