@@ -4,6 +4,9 @@ package com.kodilla.rps;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+
+import static com.kodilla.rps.Game.fightResult.*;
+
 public class RpsRunner {
 
     private String playerName;
@@ -15,44 +18,48 @@ public class RpsRunner {
     private final Shapes rock = new Shapes("rock", Collections.singletonList("scissors"));
     private final Shapes paper = new Shapes("paper", Collections.singletonList("rock"));
     private final Shapes scissors = new Shapes("scissors", Collections.singletonList("paper"));
-    public static void main(String[] args){
+    private Random random = new Random();
+    public static void main(String[] args) {
+        new RpsRunner().run();
 
-        //Player name and round count;
-        RpsRunner runner = new RpsRunner();
-
-        runner.initialScreen();
-
-        runner.instructions();
-
-
-        boolean end = false;
-
-
-        while(!end) {
-
-            //Player and computer move
-            Shapes playerMove = runner.playerMove();
-            Shapes computerMove = runner.computerMove();
-            //Translating player move with actions
-            switch(runner.move){
-                case "x":
-                    System.out.println("End game!");
-                    System.exit(0);
-                case "n":
-                    System.out.println("New game");
-                    runner.initialScreen();
-                    continue;
-            }
-
-            //actual game
-            runner.play(playerMove,computerMove);
-
-
-            //Displaying game result
-            end = runner.displayResult();
-
-        }
     }
+    public void run(){
+
+            //Player name and round count;
+            initialScreen();
+
+            instructions();
+
+
+            boolean end = false;
+
+
+            while(!end) {
+
+                //Player and computer move
+                Shapes playerMove = playerMove();
+                Shapes computerMove = computerMove();
+                //Translating player move with actions
+                switch(move){
+                    case "x":
+                        System.out.println("End game!");
+                        System.exit(0);
+                    case "n":
+                        System.out.println("New game");
+                        initialScreen();
+                        continue;
+                }
+
+                //actual game
+                play(playerMove, computerMove);
+
+
+                //Displaying game result
+                end = displayResult();
+
+            }
+        }
+
     public void initialScreen(){
         System.out.println("Player 1 please state your name");
         Scanner sc = new Scanner(System.in);
@@ -74,7 +81,7 @@ public class RpsRunner {
         System.out.println(playerName + ": Please choose your move.");
         Scanner scanner = new Scanner(System.in);
         move = scanner.nextLine();
-        switch(move){
+        switch (move) {
             case "1":
                 return rock;
             case "2":
@@ -90,7 +97,7 @@ public class RpsRunner {
 
     }
     public Shapes computerMove(){
-        Random random = new Random();
+
         int computerMove = random.nextInt(3);
         switch (computerMove){
             case 0:
@@ -107,11 +114,11 @@ public class RpsRunner {
     public void play(Shapes playerMove, Shapes computerMove){
         Game game = new Game(playerMove,computerMove);
         System.out.println(playerMove.getName() + " vs " + computerMove.getName());
-        if (game.fightResult(playerMove, computerMove) == 1) {
+        if (game.fightResult() == PLAYER_WINS) {
             playerPoints++;
             counter++;
             System.out.println("Player wins round!");
-        } else if(game.fightResult(playerMove,computerMove) ==2) {
+        } else if(game.fightResult() ==COMPUTER_WINS) {
             System.out.println("Draw!");
         } else{
             computerPoints++;
@@ -124,10 +131,10 @@ public class RpsRunner {
             if (playerPoints > computerPoints) {
                 System.out.println("Player wins game!");
                  return true;
-            } else if(computerPoints > playerPoints) {
+            } else if (computerPoints > playerPoints) {
                 System.out.print("Computer wins game!");
                 return true;
-            } else if(computerPoints==playerPoints){
+            } else if (computerPoints==playerPoints){
                 System.out.println("Draw! Additional round");
                 return false;
             }
