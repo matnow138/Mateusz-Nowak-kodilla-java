@@ -1,10 +1,10 @@
 package com.kodilla.rps;
 
-import java.awt.*;
-import java.util.Collection;
-import java.util.Collections;
+import static com.kodilla.rps.Game.FightResult.*;
 
 public class Game {
+
+    public enum FightResult {PLAYER_WINS, COMPUTER_WINS, DRAW}
 
     private final Shapes playerMove;
     private final Shapes computerMove;
@@ -15,21 +15,16 @@ public class Game {
 
     }
 
-    //Translating computer moves to String
-
-
-    //Translating player move
-
-       public int fightResult(Shapes playerMove, Shapes computerMove){
+    public FightResult fightResult() {
         //Verification if player move beats computer move
         //Overall logic - program check list for player move and if computer move is in that list -player wins, otherwise - computer wins
 
-        if(playerMove.getWinsWith().contains(computerMove.getName())){
-            return 1;
-        }else if(playerMove.getName().equals(computerMove.getName())){
-            return 2;
+        if (playerMove.getWinsWith().contains(computerMove.getName())) {
+            return PLAYER_WINS;
+        } else if (playerMove.getName().equals(computerMove.getName())) {
+            return COMPUTER_WINS;
         }
-            return 0;
+        return DRAW;
 
     }
 }
