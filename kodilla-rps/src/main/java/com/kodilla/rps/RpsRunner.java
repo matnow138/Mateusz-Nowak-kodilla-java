@@ -6,21 +6,23 @@ import java.util.Random;
 import java.util.Scanner;
 public class RpsRunner {
 
-    private static String playerName;
-    private static int gameCount;
-    private static int counter;
-    private static String move;
-    private static int playerPoints=0;
-    private static int computerPoints=0;
-    public static Shapes rock = new Shapes("rock", Collections.singletonList("scissors"));
-    public static Shapes paper = new Shapes("paper", Collections.singletonList("rock"));
-    public static Shapes scissors = new Shapes("scissors", Collections.singletonList("paper"));
+    private String playerName;
+    private int gameCount;
+    private int counter;
+    private  String move;
+    private int playerPoints=0;
+    private int computerPoints=0;
+    private final Shapes rock = new Shapes("rock", Collections.singletonList("scissors"));
+    private final Shapes paper = new Shapes("paper", Collections.singletonList("rock"));
+    private final Shapes scissors = new Shapes("scissors", Collections.singletonList("paper"));
     public static void main(String[] args){
 
         //Player name and round count;
-        initialScreen();
+        RpsRunner runner = new RpsRunner();
 
-        instructions();
+        runner.initialScreen();
+
+        runner.instructions();
 
 
         boolean end = false;
@@ -29,48 +31,37 @@ public class RpsRunner {
         while(!end) {
 
             //Player and computer move
-            Shapes playerMove = playerMove();
-            Shapes computerMove = computerMove();
+            Shapes playerMove = runner.playerMove();
+            Shapes computerMove = runner.computerMove();
             //Translating player move with actions
-            switch(move){
+            switch(runner.move){
                 case "x":
                     System.out.println("End game!");
-                    break;
+                    System.exit(0);
                 case "n":
                     System.out.println("New game");
-                    initialScreen();
-                    break;
+                    runner.initialScreen();
+                    continue;
             }
 
             //actual game
-            play(playerMove,computerMove);
+            runner.play(playerMove,computerMove);
 
 
             //Displaying game result
+            end = runner.displayResult();
 
-            if (counter >= gameCount) {
-                if (playerPoints > computerPoints) {
-                    System.out.println("Player wins game!");
-                    end = true;
-                } else if(computerPoints > playerPoints) {
-                    System.out.print("Computer wins game!");
-                    end = true;
-                } else{
-                    System.out.println("Draw! Additional round");
-                }
-            }
         }
     }
-    public static void initialScreen(){
+    public void initialScreen(){
         System.out.println("Player 1 please state your name");
         Scanner sc = new Scanner(System.in);
         playerName = sc.nextLine();
         System.out.println("Round count:");
         gameCount = sc.nextInt();
         counter =0;
-
     }
-    public static void instructions(){
+    public void instructions(){
         System.out.println("Game manual: \n " +
                 "Press 1 for rock \n " +
                 "Press 2 for paper \n " +
@@ -79,7 +70,7 @@ public class RpsRunner {
                 "Press n for new game \n");
 
     }
-    public static Shapes playerMove(){
+    public Shapes playerMove(){
         System.out.println(playerName + ": Please choose your move.");
         Scanner scanner = new Scanner(System.in);
         move = scanner.nextLine();
@@ -94,11 +85,11 @@ public class RpsRunner {
                 return null;
             default:
             System.out.println("Wrong move, please choose again");
-            playerMove();
+            return playerMove();
         }
-        return null;
+
     }
-    public static Shapes computerMove(){
+    public Shapes computerMove(){
         Random random = new Random();
         int computerMove = random.nextInt(3);
         switch (computerMove){
@@ -113,7 +104,7 @@ public class RpsRunner {
         return null;
     }
 
-    public static void play(Shapes playerMove, Shapes computerMove){
+    public void play(Shapes playerMove, Shapes computerMove){
         Game game = new Game(playerMove,computerMove);
         System.out.println(playerMove.getName() + " vs " + computerMove.getName());
         if (game.fightResult(playerMove, computerMove) == 1) {
@@ -127,6 +118,21 @@ public class RpsRunner {
             counter++;
             System.out.println("Computer wins round!");
         }
+    }
+    public boolean displayResult(){
+        if (counter >= gameCount) {
+            if (playerPoints > computerPoints) {
+                System.out.println("Player wins game!");
+                 return true;
+            } else if(computerPoints > playerPoints) {
+                System.out.print("Computer wins game!");
+                return true;
+            } else if(computerPoints==playerPoints){
+                System.out.println("Draw! Additional round");
+                return false;
+            }
+        }
+        return false;
     }
 
 }
