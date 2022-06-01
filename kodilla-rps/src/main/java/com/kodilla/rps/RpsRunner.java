@@ -1,9 +1,7 @@
 package com.kodilla.rps;
 
 
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import static com.kodilla.rps.Game.fightResult.*;
 
@@ -14,9 +12,12 @@ public class RpsRunner {
     private  String move;
     private int playerPoints=0;
     private int computerPoints=0;
-    private final Shapes rock = new Shapes("rock", Collections.singletonList("scissors"));
-    private final Shapes paper = new Shapes("paper", Collections.singletonList("rock"));
-    private final Shapes scissors = new Shapes("scissors", Collections.singletonList("paper"));
+    private final Shapes rock = new Shapes("rock", Arrays.asList("scissors", "lizard"));
+
+    private final Shapes paper = new Shapes("paper", Arrays.asList("rock", "spock"));
+    private final Shapes scissors = new Shapes("scissors", Arrays.asList("paper", "lizard"));
+    private final Shapes lizard = new Shapes("lizard", Arrays.asList("spock", "paper"));
+    private final Shapes spock = new Shapes("spock", Arrays.asList("scissors", "rock"));
     private Random random = new Random();
     public static void main(String[] args) {
         new RpsRunner().run();
@@ -66,6 +67,8 @@ public class RpsRunner {
                 "Press 1 for rock \n " +
                 "Press 2 for paper \n " +
                 "Press 3 for scissors \n " +
+                "Press 4 for lizard \n " +
+                "Press 5 for spock \n" +
                 "Press x to end game \n " +
                 "Press n for new game \n");
 
@@ -81,6 +84,10 @@ public class RpsRunner {
                 return paper;
             case "3":
                 return scissors;
+            case "4":
+                return lizard;
+            case "5":
+                return spock;
             case "x", "n":
                 return null;
             default:
@@ -108,7 +115,7 @@ public class RpsRunner {
                         playerPoints=0;
                         return false;
                     case "n":
-                        System.out.println("Game will continue");
+
                         return false;
                 }
                 return true;
@@ -117,7 +124,7 @@ public class RpsRunner {
     }
     public Shapes computerMove(){
 
-        int computerMove = random.nextInt(3);
+        int computerMove = random.nextInt(5);
         switch (computerMove){
             case 0:
                 return rock;
@@ -125,6 +132,10 @@ public class RpsRunner {
                 return paper;
             case 2:
                 return scissors;
+            case 3:
+                return lizard;
+            case 4:
+                return spock;
             }
 
         return null;
@@ -149,7 +160,7 @@ public class RpsRunner {
     public boolean displayResult(){
         if (playerPoints >= gameCount || computerPoints >= gameCount) {
             if (playerPoints > computerPoints) {
-                System.out.println("Player wins game!" + playerPoints +":" + computerPoints);
+                System.out.println("Player wins game!" + playerPoints +":" + computerPoints +"\n");
                 System.out.println("For new game press n\n" +
                         "to end game press x");
                 Scanner sc = new Scanner(System.in);
@@ -162,7 +173,7 @@ public class RpsRunner {
                     return true;
                 }
             } else if (computerPoints > playerPoints) {
-                System.out.print("Computer wins game!" + computerPoints + ":" + playerPoints);
+                System.out.print("Computer wins game!" + computerPoints + ":" + playerPoints+"\n");
                 System.out.println("For new game press n\n" +
                         "to end game press x");
                 Scanner sc = new Scanner(System.in);
@@ -171,7 +182,7 @@ public class RpsRunner {
                     playerDecision();
                     return false;
                 } else {
-                    return true;
+                    System.exit(0);
                 }
             } else if (computerPoints==playerPoints){
                 System.out.println("Draw! Additional round");
