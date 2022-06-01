@@ -11,7 +11,6 @@ public class RpsRunner {
 
     private String playerName;
     private int gameCount;
-    private int counter;
     private  String move;
     private int playerPoints=0;
     private int computerPoints=0;
@@ -40,24 +39,8 @@ public class RpsRunner {
                 Shapes playerMove = playerMove();
                 Shapes computerMove = computerMove();
                 //Translating player move with actions
-                switch(move){
-                    case "x":
-                        System.out.println("End game!");
-                        System.exit(0);
-                    case "n":
-                        System.out.println("Are you sure to restart game? \n" +
-                                "Press 1 to to confirm \n " +
-                                "Press 2 to cancel" );
-                        Scanner sc = new Scanner(System.in);
-                        String decision = sc.nextLine();
-                        switch (decision) {
-                            case "1":
-                                System.out.println("New game");
-                                initialScreen();
-                                continue;
-                            default:
-                                continue;
-                        }
+                if(!playerDecision()){
+                    continue;
                 }
 
                 //actual game
@@ -74,16 +57,16 @@ public class RpsRunner {
         System.out.println("Player 1 please state your name");
         Scanner sc = new Scanner(System.in);
         playerName = sc.nextLine();
-        System.out.println("Round count:");
+        System.out.println("Rounds to win:");
         gameCount = sc.nextInt();
-        counter =0;
+
     }
     public void instructions(){
         System.out.println("Game manual: \n " +
                 "Press 1 for rock \n " +
                 "Press 2 for paper \n " +
                 "Press 3 for scissors \n " +
-                "Press x to end game \n" +
+                "Press x to end game \n " +
                 "Press n for new game \n");
 
     }
@@ -106,6 +89,32 @@ public class RpsRunner {
         }
 
     }
+    public boolean playerDecision(){
+        switch(move){
+            case "x":
+                System.out.println("End game!");
+                System.exit(0);
+            case "n":
+                System.out.println("Are you sure to restart game? \n" +
+                        "Press y to to confirm \n " +
+                        "Press n to cancel" );
+                Scanner sc = new Scanner(System.in);
+                String decision = sc.nextLine();
+                switch(decision) {
+                    case "y":
+                        System.out.println("New game");
+                        initialScreen();
+                        computerPoints=0;
+                        playerPoints=0;
+                        return false;
+                    case "n":
+                        System.out.println("Game will continue");
+                        return false;
+                }
+                return true;
+        }
+        return true;
+    }
     public Shapes computerMove(){
 
         int computerMove = random.nextInt(3);
@@ -126,25 +135,44 @@ public class RpsRunner {
         System.out.println(playerMove.getName() + " vs " + computerMove.getName());
         if (game.fightResult() == PLAYER_WINS) {
             playerPoints++;
-            counter++;
+
             System.out.println("Player wins round!");
-        } else if(game.fightResult() ==COMPUTER_WINS) {
+        } else if(game.fightResult() ==DRAW) {
             System.out.println("Draw!");
         } else{
             computerPoints++;
-            counter++;
+
             System.out.println("Computer wins round!");
         }
-        System.out.println("Player points: " + playerPoints + "\n Computer points: " + computerPoints);
+        System.out.println("Player points: " + playerPoints + "\nComputer points: " + computerPoints);
     }
     public boolean displayResult(){
-        if (counter >= gameCount) {
+        if (playerPoints >= gameCount || computerPoints >= gameCount) {
             if (playerPoints > computerPoints) {
-                System.out.println("Player wins game!");
-                 return true;
+                System.out.println("Player wins game!" + playerPoints +":" + computerPoints);
+                System.out.println("For new game press n\n" +
+                        "to end game press x");
+                Scanner sc = new Scanner(System.in);
+                move = sc.nextLine();
+                playerDecision();
+                if (move.equals("x")) {
+                    playerDecision();
+                    return false;
+                } else {
+                    return true;
+                }
             } else if (computerPoints > playerPoints) {
-                System.out.print("Computer wins game!");
-                return true;
+                System.out.print("Computer wins game!" + computerPoints + ":" + playerPoints);
+                System.out.println("For new game press n\n" +
+                        "to end game press x");
+                Scanner sc = new Scanner(System.in);
+                move = sc.nextLine();
+                if (move.equals("n")) {
+                    playerDecision();
+                    return false;
+                } else {
+                    return true;
+                }
             } else if (computerPoints==playerPoints){
                 System.out.println("Draw! Additional round");
                 return false;
