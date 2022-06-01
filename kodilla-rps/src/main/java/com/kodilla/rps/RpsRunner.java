@@ -45,9 +45,19 @@ public class RpsRunner {
                         System.out.println("End game!");
                         System.exit(0);
                     case "n":
-                        System.out.println("New game");
-                        initialScreen();
-                        continue;
+                        System.out.println("Are you sure to restart game? \n" +
+                                "Press 1 to to confirm \n " +
+                                "Press 2 to cancel" );
+                        Scanner sc = new Scanner(System.in);
+                        String decision = sc.nextLine();
+                        switch (decision) {
+                            case "1":
+                                System.out.println("New game");
+                                initialScreen();
+                                continue;
+                            default:
+                                continue;
+                        }
                 }
 
                 //actual game
@@ -125,6 +135,7 @@ public class RpsRunner {
             counter++;
             System.out.println("Computer wins round!");
         }
+        System.out.println("Player points: " + playerPoints + "\n Computer points: " + computerPoints);
     }
     public boolean displayResult(){
         if (counter >= gameCount) {

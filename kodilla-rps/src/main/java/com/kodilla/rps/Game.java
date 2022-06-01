@@ -19,9 +19,9 @@ public class Game {
         if(playerMove.getWinsWith().contains(computerMove.getName())){
             return fightResult.PLAYER_WINS;
         }else if(playerMove.getName().equals(computerMove.getName())){
-            return fightResult.COMPUTER_WINS;
-        }
             return fightResult.DRAW;
+        }
+            return fightResult.COMPUTER_WINS;
 
     }
 }
