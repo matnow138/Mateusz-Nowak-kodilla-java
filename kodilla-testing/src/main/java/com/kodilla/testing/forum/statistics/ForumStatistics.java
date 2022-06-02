@@ -4,10 +4,10 @@ import java.util.List;
 
 public class ForumStatistics {
     Statistics statistics;
-    List<String> usersNames;
+    int usersCount;
     int postsCount;
     int commentsCount;
-    int usersCount;
+
     double averagePostsUsersCount;
     double averageCommentsUserCount;
     double averageCommentsPostsCount;
@@ -24,17 +24,62 @@ public class ForumStatistics {
 
 
     public void calculateAdvStatistics(Statistics statistics){
-        usersCount=statistics.usersNames().size();
-        postsCount=statistics.postsCount();
-        commentsCount= statistics.commentsCount();
-        averagePostsUsersCount = (double)postsCount/usersCount;
-        averageCommentsUserCount = (double)commentsCount/usersCount;
-        averageCommentsPostsCount = (double)commentsCount/postsCount;
+        usersCount=userCount(statistics);
+        postsCount=postsCount(statistics);
+        commentsCount= postsCount(statistics);
+        averagePostsUsersCount = averagePostsUsersCount();
+        averageCommentsUserCount = averageCommentsUserCount();
+        averageCommentsPostsCount = averageCommentsPostsCount();
 
+    }
+    public int userCount (Statistics statistics){
+        return statistics.usersCount();
+    }
+
+    public int postsCount(Statistics statistics){
+        return statistics.postsCount();
+    }
+
+    public double averagePostsUsersCount(){
+        return postsCount/usersCount;
+    }
+
+    public double averageCommentsUserCount(){
+        return commentsCount/usersCount;
+    }
+
+    public double averageCommentsPostsCount(){
+        return commentsCount/postsCount;
     }
 
     public void showStatistics(){
 
 
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public int getUsersCount() {
+        return usersCount;
+    }
+
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+
+
+
+    public double getAveragePostsUsersCount() {
+        return averagePostsUsersCount;
+    }
+
+    public double getAverageCommentsUserCount() {
+        return averageCommentsUserCount;
+    }
+
+    public double getAverageCommentsPostsCount() {
+        return averageCommentsPostsCount;
     }
 }
