@@ -8,32 +8,34 @@ public class ForumStatistics {
     int postsCount;
     int commentsCount;
 
+    List<String> usersName;
     double averagePostsUsersCount;
     double averageCommentsUserCount;
     double averageCommentsPostsCount;
 
-    public ForumStatistics(Statistics statistics) {
-        this.statistics = statistics;
+   public ForumStatistics(Statistics statistics) {
+        this.statistics=statistics;
 
     }
 
-    public int getPostsCount() {
-        return postsCount;
-    }
 
 
 
     public void calculateAdvStatistics(Statistics statistics){
-        usersCount=userCount(statistics);
-        postsCount=postsCount(statistics);
-        commentsCount= postsCount(statistics);
+      usersName=statistics.usersNames();
+      postsCount=statistics.postsCount();
+      commentsCount= statistics.commentsCount();
         averagePostsUsersCount = averagePostsUsersCount();
         averageCommentsUserCount = averageCommentsUserCount();
         averageCommentsPostsCount = averageCommentsPostsCount();
 
     }
     public int userCount (Statistics statistics){
-        return statistics.usersCount();
+
+        if(statistics.usersNames().size()!=0){
+            return statistics.usersNames().size();
+        }
+        return 0;
     }
 
     public int postsCount(Statistics statistics){
@@ -41,15 +43,25 @@ public class ForumStatistics {
     }
 
     public double averagePostsUsersCount(){
-        return postsCount/usersCount;
+
+        if(usersCount!=0){
+            return postsCount/usersCount;
+        }
+        return  -1;
     }
 
     public double averageCommentsUserCount(){
-        return commentsCount/usersCount;
+        if(usersCount!=0){
+            return commentsCount/usersCount;
+        }
+        return -1;
     }
 
-    public double averageCommentsPostsCount(){
-        return commentsCount/postsCount;
+    public double averageCommentsPostsCount() {
+        if (postsCount != 0) {
+            return commentsCount/postsCount;
+        }
+        return -1;
     }
 
     public void showStatistics(){
