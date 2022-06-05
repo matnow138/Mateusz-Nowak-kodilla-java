@@ -29,26 +29,25 @@ public class StatisticTestSuite {
     private int comments0;
     private int users0;
     private int users100;
+    private static List<String> usersName;
+    private static int postsCount;
+    private static int commentsCount;
 
 @BeforeEach
     public void testData () {
-        posts0 = 0;
-        posts1000 = 1000;
-        comments0 = 0;
-        users0 = 0;
-        users100 = 100;
+        usersName = new ArrayList<>();
+        postsCount=0;
+        commentsCount=0;
     }
 
-    static List<String> usersName = new ArrayList<>();
-    private static int postsCount;
-    private static int commentsCount;
+
 
 
 @DisplayName("Test for 0 posts")
     @Test
   public void testPostCount0(){
         //Given
-        for(int i=0; i<1000;i++){
+        for(int i=0; i<10;i++){
             usersName.add(Integer.toString(i));
         }
         postsCount=0;
@@ -60,58 +59,153 @@ public class StatisticTestSuite {
         //When
 
         forumStatistics.calculateAdvStatistics(statisticsMock);
-        int postsCount = forumStatistics.postsCount;
+        //int postsCount = forumStatistics.getPostsCount();
+
 
         //Then
-        Assertions.assertEquals(0,postsCount);
-    }/*
+        Assertions.assertEquals("Cannot calculate average for 0 posts. \n"+
+            "Average number of posts per user: 0.0\n"+
+    "Average number of comments per user: 1.0", forumStatistics.showStatistics());
+
+    }
     @DisplayName("Test for 1000 posts")
     @Test
     public void testPostCount1000(){
         //Given
-        Statistics statisticsMock = mock(Statistics.class);
+        for(int i=0; i<1000;i++){
+            usersName.add(Integer.toString(i));
+        }
+        postsCount=1000;
+        commentsCount=500;
         ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        when(statisticsMock.usersNames()).thenReturn(usersName);
+        when(statisticsMock.postsCount()).thenReturn(postsCount);
+        when(statisticsMock.commentsCount()).thenReturn(commentsCount);
+        //When
+
+        forumStatistics.calculateAdvStatistics(statisticsMock);
+
 
         //Then
-        when(forumStatistics.calculateAdvStatistics(statistics())).thenReturn()
-        forumStatistics.calculateAdvStatistics(statisticsMock);
-        double postCount = forumStatistics.postsCount;
-
-        //Given
-        Assertions.assertEquals(1000,postCount);
+        Assertions.assertEquals("Average number of posts per user: 1.0\n"+
+                "Average number of comments per user: 0.5\n"+
+                "Average number of comments per posts: 0.5", forumStatistics.showStatistics());
     }
 
     @DisplayName("Test for 0 comments")
     @Test
     public void testCommentsCount0(){
         //Given
-        Statistics statisticsMock = mock(Statistics.class);
+        for(int i=0; i<10;i++){
+            usersName.add(Integer.toString(i));
+        }
+        postsCount=50;
+        commentsCount=0;
         ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        when(statisticsMock.usersNames()).thenReturn(usersName);
+        when(statisticsMock.postsCount()).thenReturn(postsCount);
+        when(statisticsMock.commentsCount()).thenReturn(commentsCount);
+        //When
+
+        forumStatistics.calculateAdvStatistics(statisticsMock);
 
 
         //Then
-        when(statisticsMock.commentsCount()).thenReturn(comments0);
-        forumStatistics.calculateAdvStatistics(Arrays.asList("John", "adam"), 5, 15);
-        double commentsCount = forumStatistics.commentsCount;
-        //Given
-        Assertions.assertEquals(0,commentsCount);
+        Assertions.assertEquals("Average number of posts per user: 5.0\n"+
+                "Average number of comments per user: 0.0\n"+
+                "Average number of comments per posts: 0.0", forumStatistics.showStatistics());
     }
     @DisplayName("Test for quantity of comments < quantity of posts")
     @Test
     public void testQuantityOfCommentsLessQuantityOfPosts(){
         //Given
-        Statistics statisticsMock = mock(Statistics.class);
+        for(int i=0; i<10;i++){
+            usersName.add(Integer.toString(i));
+        }
+        postsCount=50;
+        commentsCount=22;
         ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        when(statisticsMock.usersNames()).thenReturn(usersName);
+        when(statisticsMock.postsCount()).thenReturn(postsCount);
+        when(statisticsMock.commentsCount()).thenReturn(commentsCount);
+        //When
+
+        forumStatistics.calculateAdvStatistics(statisticsMock);
 
 
         //Then
-        when(statisticsMock.commentsCount()).thenReturn(comments0);
-        when(statisticsMock.postsCount()).thenReturn(posts1000);
-        forumStatistics.calculateAdvStatistics(Arrays.asList("John", "adam"), 5, 15);
-        double commentsCount = forumStatistics.commentsCount;
-        //Given
-        Assertions.assertEquals(0,commentsCount);
+        Assertions.assertEquals("Average number of posts per user: 5.0\n"+
+                "Average number of comments per user: 2.2\n"+
+                "Average number of comments per posts: 0.44", forumStatistics.showStatistics());
     }
-*/
+    @DisplayName("Test for quantity of comments > quantity of posts")
+    @Test
+    public void testQuantityOfCommentsGreaterQuantityOfPosts(){
+        //Given
+        for(int i=0; i<10;i++){
+            usersName.add(Integer.toString(i));
+        }
+        postsCount=30;
+        commentsCount=54;
+        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        when(statisticsMock.usersNames()).thenReturn(usersName);
+        when(statisticsMock.postsCount()).thenReturn(postsCount);
+        when(statisticsMock.commentsCount()).thenReturn(commentsCount);
+        //When
+
+        forumStatistics.calculateAdvStatistics(statisticsMock);
+
+
+        //Then
+        Assertions.assertEquals("Average number of posts per user: 3.0\n"+
+                "Average number of comments per user: 5.4\n"+
+                "Average number of comments per posts: 1.8", forumStatistics.showStatistics());
+    }
+    @DisplayName("Test for 0 users")
+    @Test
+    public void test0Users(){
+        //Given
+        for(int i=0; i<0;i++){
+            usersName.add(Integer.toString(i));
+        }
+        postsCount=30;
+        commentsCount=54;
+        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        when(statisticsMock.usersNames()).thenReturn(usersName);
+        when(statisticsMock.postsCount()).thenReturn(postsCount);
+        when(statisticsMock.commentsCount()).thenReturn(commentsCount);
+        //When
+
+        forumStatistics.calculateAdvStatistics(statisticsMock);
+
+
+        //Then
+        Assertions.assertEquals("Cannot calculate average for 0 users. \n"+
+                "Average Comments per posts: 1.8", forumStatistics.showStatistics());
+    }
+    @DisplayName("Test for 0 users")
+    @Test
+    public void test100Users(){
+        //Given
+        for(int i=0; i<100;i++){
+            usersName.add(Integer.toString(i));
+        }
+        postsCount=50;
+        commentsCount=50;
+        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        when(statisticsMock.usersNames()).thenReturn(usersName);
+        when(statisticsMock.postsCount()).thenReturn(postsCount);
+        when(statisticsMock.commentsCount()).thenReturn(commentsCount);
+        //When
+
+        forumStatistics.calculateAdvStatistics(statisticsMock);
+
+
+        //Then
+        Assertions.assertEquals("Average number of posts per user: 0.5\n"+
+                "Average number of comments per user: 0.5\n"+
+                "Average number of comments per posts: 1.0", forumStatistics.showStatistics());
+    }
+
 
 }
