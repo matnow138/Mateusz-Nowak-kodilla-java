@@ -6,23 +6,27 @@ import java.util.Map;
 public class FlightSearch {
 
     public void findFlight(Flight flight) throws RouteNotFoundException{
-        Map<String,Boolean> airportMap= new HashMap<>();
+        if (flight!=null) {
+            Map<String, Boolean> airportMap = new HashMap<>();
 
-        airportMap.put("Poznań",true);
-        airportMap.put("Warszawa",false);
-        airportMap.put("Szczecin", true);
-        airportMap.put("London", false);
-        airportMap.put("Oslo", true);
-        airportMap.put("Bydgoszcz", false);
-        airportMap.put("Berlin", true);
-        if(airportMap.containsKey(flight.getArrivalAirport())){
-            if(airportMap.get(flight.getDepartureAirport())==true && (airportMap.get(flight.getArrivalAirport())==true)){
-                System.out.println("You can this route");
-            } else if(airportMap.get(flight.getDepartureAirport())==false || (airportMap.get(flight.getArrivalAirport())==false)){
-                System.out.println("You cant fly this route");
+            airportMap.put("Poznań", true);
+            airportMap.put("Warszawa", false);
+            airportMap.put("Szczecin", true);
+            airportMap.put("London", false);
+            airportMap.put("Oslo", true);
+            airportMap.put("Bydgoszcz", false);
+            airportMap.put("Berlin", true);
+            if (airportMap.containsKey(flight.getArrivalAirport())) {
+                if (airportMap.get(flight.getDepartureAirport()) == true && (airportMap.get(flight.getArrivalAirport()) == true)) {
+                    System.out.println("You can this route");
+                } else if (airportMap.get(flight.getDepartureAirport()) == false || (airportMap.get(flight.getArrivalAirport()) == false)) {
+                    System.out.println("You cant fly this route");
+                }
+            } else {
+                throw new RouteNotFoundException();
             }
-        }else{
-            throw new RouteNotFoundException();
+        } else{
+            System.out.println("Flight rout cant be empty");
         }
     }
 }
