@@ -18,7 +18,7 @@ public class FlightSearch {
             airportMap.put("Berlin", true);
             if (airportMap.containsKey(flight.getArrivalAirport())) {
                 if (airportMap.get(flight.getDepartureAirport()) == true && (airportMap.get(flight.getArrivalAirport()) == true)) {
-                    System.out.println("You can this route");
+                    System.out.println("You can fly this route");
                 } else if (airportMap.get(flight.getDepartureAirport()) == false || (airportMap.get(flight.getArrivalAirport()) == false)) {
                     System.out.println("You cant fly this route");
                 }
