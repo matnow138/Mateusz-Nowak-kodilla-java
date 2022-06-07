@@ -11,11 +11,15 @@ public class FlightSearch {
         airportMap.put("Poznań",true);
         airportMap.put("Warszawa",false);
         airportMap.put("Szczecin", true);
+        airportMap.put("London", false);
+        airportMap.put("Oslo", true);
+        airportMap.put("Bydgoszcz", false);
+        airportMap.put("Berlin", true);
         if(airportMap.containsKey(flight.getArrivalAirport())){
-            if(airportMap.get(flight.arrivalAirport)==true){
-                System.out.println("You can fly to this airport");
-            } else if(airportMap.get(flight.arrivalAirport)==false){
-                System.out.println("You cant fly to this airport");
+            if(airportMap.get(flight.getDepartureAirport())==true && (airportMap.get(flight.getArrivalAirport())==true)){
+                System.out.println("You can this route");
+            } else if(airportMap.get(flight.getDepartureAirport())==false || (airportMap.get(flight.getArrivalAirport())==false)){
+                System.out.println("You cant fly this route");
             }
         }else{
             throw new RouteNotFoundException();
