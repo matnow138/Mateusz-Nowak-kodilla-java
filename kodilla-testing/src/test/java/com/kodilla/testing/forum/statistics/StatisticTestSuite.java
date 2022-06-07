@@ -24,11 +24,7 @@ public class StatisticTestSuite {
 
    @Mock
    Statistics statisticsMock;
-    private int posts0;
-    private int posts1000;
-    private int comments0;
-    private int users0;
-    private int users100;
+
     private static List<String> usersName;
     private static int postsCount;
     private static int commentsCount;
@@ -63,9 +59,10 @@ public class StatisticTestSuite {
 
 
         //Then
-        Assertions.assertEquals("Cannot calculate average for 0 posts. \n"+
-            "Average number of posts per user: 0.0\n"+
-    "Average number of comments per user: 1.0", forumStatistics.showStatistics());
+        Assertions.assertEquals(0, forumStatistics.getAveragePostsUsersCount());
+        Assertions.assertEquals(1, forumStatistics.getAverageCommentsUserCount());
+        Assertions.assertEquals(-1,forumStatistics.getAverageCommentsPostsCount());
+
 
     }
     @DisplayName("Test for 1000 posts")
@@ -87,9 +84,10 @@ public class StatisticTestSuite {
 
 
         //Then
-        Assertions.assertEquals("Average number of posts per user: 1.0\n"+
-                "Average number of comments per user: 0.5\n"+
-                "Average number of comments per posts: 0.5", forumStatistics.showStatistics());
+        Assertions.assertEquals(1.0, forumStatistics.getAveragePostsUsersCount());
+        Assertions.assertEquals(0.5, forumStatistics.getAverageCommentsUserCount());
+        Assertions.assertEquals(0.5,forumStatistics.getAverageCommentsPostsCount());
+
     }
 
     @DisplayName("Test for 0 comments")
@@ -111,9 +109,10 @@ public class StatisticTestSuite {
 
 
         //Then
-        Assertions.assertEquals("Average number of posts per user: 5.0\n"+
-                "Average number of comments per user: 0.0\n"+
-                "Average number of comments per posts: 0.0", forumStatistics.showStatistics());
+        Assertions.assertEquals(5.0, forumStatistics.getAveragePostsUsersCount());
+        Assertions.assertEquals(0.0, forumStatistics.getAverageCommentsUserCount());
+        Assertions.assertEquals(0.0,forumStatistics.getAverageCommentsPostsCount());
+
     }
     @DisplayName("Test for quantity of comments < quantity of posts")
     @Test
@@ -134,9 +133,10 @@ public class StatisticTestSuite {
 
 
         //Then
-        Assertions.assertEquals("Average number of posts per user: 5.0\n"+
-                "Average number of comments per user: 2.2\n"+
-                "Average number of comments per posts: 0.44", forumStatistics.showStatistics());
+        Assertions.assertEquals(5.0, forumStatistics.getAveragePostsUsersCount());
+        Assertions.assertEquals(2.2, forumStatistics.getAverageCommentsUserCount());
+        Assertions.assertEquals(0.44,forumStatistics.getAverageCommentsPostsCount());
+
     }
     @DisplayName("Test for quantity of comments > quantity of posts")
     @Test
@@ -157,9 +157,10 @@ public class StatisticTestSuite {
 
 
         //Then
-        Assertions.assertEquals("Average number of posts per user: 3.0\n"+
-                "Average number of comments per user: 5.4\n"+
-                "Average number of comments per posts: 1.8", forumStatistics.showStatistics());
+        Assertions.assertEquals(3.0, forumStatistics.getAveragePostsUsersCount());
+        Assertions.assertEquals(5.4, forumStatistics.getAverageCommentsUserCount());
+        Assertions.assertEquals(1.8,forumStatistics.getAverageCommentsPostsCount());
+
     }
     @DisplayName("Test for 0 users")
     @Test
@@ -180,10 +181,12 @@ public class StatisticTestSuite {
 
 
         //Then
-        Assertions.assertEquals("Cannot calculate average for 0 users. \n"+
-                "Average Comments per posts: 1.8", forumStatistics.showStatistics());
+        Assertions.assertEquals(-1, forumStatistics.getAveragePostsUsersCount());
+        Assertions.assertEquals(-1, forumStatistics.getAverageCommentsUserCount());
+        Assertions.assertEquals(1.8,forumStatistics.getAverageCommentsPostsCount());
+
     }
-    @DisplayName("Test for 0 users")
+    @DisplayName("Test for 100 users")
     @Test
     public void test100Users(){
         //Given
@@ -202,6 +205,9 @@ public class StatisticTestSuite {
 
 
         //Then
+        Assertions.assertEquals(0.5, forumStatistics.getAveragePostsUsersCount());
+        Assertions.assertEquals(0.5, forumStatistics.getAverageCommentsUserCount());
+        Assertions.assertEquals(1.0,forumStatistics.getAverageCommentsPostsCount());
         Assertions.assertEquals("Average number of posts per user: 0.5\n"+
                 "Average number of comments per user: 0.5\n"+
                 "Average number of comments per posts: 1.0", forumStatistics.showStatistics());
