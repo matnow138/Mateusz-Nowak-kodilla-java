@@ -1,0 +1,3 @@
+[submodule "GoodPatterns"]
+	path = GoodPatterns
+	url = https://github.com/matnow138/Mateusz-Nowak-kodilla-java.git
