@@ -47,21 +47,21 @@ public class ForumStatistics {
         if(usersName.size()!=0){
             return postsCount/(double)usersName.size();
         }
-        return  0;
+        return  -1;
     }
 
     public double averageCommentsUserCount(){
         if(usersName.size()!=0){
             return commentsCount/(double)usersName.size();
         }
-        return 0;
+        return -1;
     }
 
     public double averageCommentsPostsCount() {
         if (postsCount != 0) {
             return commentsCount/(double)postsCount;
         }
-        return 0;
+        return -1;
     }
 
     public String showStatistics() {
@@ -80,11 +80,6 @@ public class ForumStatistics {
     }
 
 
-
-    public int getPostsCount() {
-        return postsCount;
-    }
-
     public double getAveragePostsUsersCount() {
         return averagePostsUsersCount;
     }
@@ -93,5 +88,7 @@ public class ForumStatistics {
         return averageCommentsUserCount;
     }
 
-
+    public double getAverageCommentsPostsCount() {
+        return averageCommentsPostsCount;
+    }
 }
