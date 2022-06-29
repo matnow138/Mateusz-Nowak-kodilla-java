@@ -12,9 +12,9 @@ public class FlightSearch {
         airportMap.put("Warszawa",false);
         airportMap.put("Szczecin", true);
         if(airportMap.containsKey(flight.getArrivalAirport())){
-            if(airportMap.get(flight.arrivalAirport)==true){
+            if(airportMap.get(flight.getArrivalAirport())==true){
                 System.out.println("You can fly to this airport");
-            } else if(airportMap.get(flight.arrivalAirport)==false){
+            } else if(airportMap.get(flight.getArrivalAirport())==false){
                 System.out.println("You cant fly to this airport");
             }
         }else{
