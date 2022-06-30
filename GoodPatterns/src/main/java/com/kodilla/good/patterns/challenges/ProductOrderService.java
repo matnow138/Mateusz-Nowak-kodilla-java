@@ -1,31 +1,25 @@
 package com.kodilla.good.patterns.challenges;
 
 public class ProductOrderService {
-    private int orderQuantity;
 
-    public ProductOrderService(){
+    private OrderService orderService;
+    private InformationService informationService;
 
+    public ProductOrderService(final InformationService informationService){
+        this.informationService=informationService;
     }
-    public void buyProcess(Item item, int orderQuantity, User user){
-        if(orderQuantity<item.getQuantity()){
-            System.out.println("You can order it!");
-        }else{
-            System.out.println("Insufficient quantity!");
-        }
 
-    }
-    public OrderDto order(Item item){
-        return null;
+    public OrderDto process(final OrderRequest orderRequest){
+        informationService.inform(orderRequest.getUser());
+
+        return new OrderDto(orderRequest.getUser(),true,1);
     }
 
     public static void main(String args[]){
-        User user = new User("Jan", "Kowalski", "Polska", "jan.kowalski@mail.com", "123456789");
+       OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
+       OrderRequest orderRequest = orderRequestRetriever.retrieve();
 
-        Item item = new Item("Bike", 5);
 
-        ProductOrderService productOrderService = new ProductOrderService();
-        int quantity = 3;
-        productOrderService.buyProcess(item,quantity,user);
 
     }
 
