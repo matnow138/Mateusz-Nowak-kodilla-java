@@ -1,7 +1,7 @@
 package com.kodilla.good.patterns.challenges;
 
 public class Item {
-    private String itemName;
+    private String itemName; //name, wiadomo ze to item
     private int quantity;
 
     public Item(String itemName, int quantity) {
