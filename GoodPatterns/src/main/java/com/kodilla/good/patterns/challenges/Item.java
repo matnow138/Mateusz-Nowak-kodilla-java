@@ -1,16 +1,16 @@
 package com.kodilla.good.patterns.challenges;
 
 public class Item {
-    private String itemName;
+    private String name;
     private int quantity;
 
-    public Item(String itemName, int quantity) {
-        this.itemName = itemName;
+    public Item(String name, int quantity) {
+        this.name = name;
         this.quantity = quantity;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
     public int getQuantity() {
