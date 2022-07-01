@@ -10,9 +10,15 @@ public class ProductOrderService {
     }
 
     public OrderDto process(final OrderRequest orderRequest){
-        informationService.inform(orderRequest.getUser());
+        boolean isBought = orderService.order(orderRequest.getUser());
+        if(isBought) {
+            informationService.inform(orderRequest.getUser());
+            //TODO CarRentalService
+            return new OrderDto(orderRequest.getUser(),true);
+        }else{
+            return new OrderDto(orderRequest.getUser(),false);
+        }
 
-        return new OrderDto(orderRequest.getUser(),true,1);
     }
 
     public static void main(String args[]){

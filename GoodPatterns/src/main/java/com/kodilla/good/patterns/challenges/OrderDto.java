@@ -4,12 +4,12 @@ public class OrderDto {
     private User user;
     private boolean isAvailable;
 
-    private int quantity;
 
-    public OrderDto(User user, boolean isAvailable, int quantity) {
+
+    public OrderDto(User user, boolean isAvailable) {
         this.user = user;
         this.isAvailable = isAvailable;
-        this.quantity = quantity;
+
     }
 
     public User getUser() {
@@ -20,7 +20,5 @@ public class OrderDto {
         return isAvailable;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
+
 }
