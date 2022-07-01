@@ -4,12 +4,9 @@ public class OrderDto {
     private User user;
     private boolean isAvailable;
 
-
-
     public OrderDto(User user, boolean isAvailable) {
         this.user = user;
         this.isAvailable = isAvailable;
-
     }
 
     public User getUser() {
