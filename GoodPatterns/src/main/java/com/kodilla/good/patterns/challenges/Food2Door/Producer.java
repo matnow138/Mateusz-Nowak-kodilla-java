@@ -1,6 +1,7 @@
 package com.kodilla.good.patterns.challenges.Food2Door;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Producer {
@@ -22,5 +23,17 @@ public class Producer {
 
     public Map<String, Integer> getProducts() {
         return products;
+    }
+    public boolean process(Order orderRunner, String producerName, String itemName, Integer quantity) {
+
+        List<Producer> producers = orderRunner.getProducers();
+
+        Map<String, Integer> products = producers.get(orderRunner.getIndex(producerName)).getProducts();
+        if (products.containsKey(itemName)) {
+
+            return products.get(itemName) >= quantity;
+        }
+
+        return false;
     }
 }
