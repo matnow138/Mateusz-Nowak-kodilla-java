@@ -23,9 +23,9 @@ public class Producer {
         return products;
     }
 
-    public boolean process(Producer producer, String itemName, Integer quantity) {
+    public boolean process(String itemName, Integer quantity) {
 
-        Map<String, Integer> products = producer.getProducts();
+
         if (products.containsKey(itemName)) {
 
             return products.get(itemName) >= quantity;

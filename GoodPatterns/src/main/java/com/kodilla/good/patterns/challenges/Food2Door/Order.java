@@ -16,7 +16,7 @@ public class Order {
     }
 
     public boolean newOrder() {
-        return producer.process(producer, itemName, quantity);
+        return producer.process(itemName, quantity);
 
     }
 
