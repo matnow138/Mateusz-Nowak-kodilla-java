@@ -12,11 +12,11 @@ public class FindFlight {
         this.flights = flights;
     }
 
-    public Optional<String> findFlight(String startingAirport, String destinationAirport) {
+   /* public Optional<String> findFlight(String startingAirport, String destinationAirport) {
         return flights.entrySet().stream()
                 .filter(entry -> entry.getKey().equals(startingAirport))
 
-                .flatMap(startAirport -> startAirport.getValue().stream()
+                .forEach(startAirport -> startAirport.getValue().stream()
                         .filter(target -> target.equals(destinationAirport))
                         .findFirst()
                         .orElse(
@@ -29,6 +29,6 @@ public class FindFlight {
                 ).findFirst();
 
 
-    }
+    }*/
 
 }

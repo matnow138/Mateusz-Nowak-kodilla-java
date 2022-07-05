@@ -27,11 +27,9 @@ public class Producer {
         return products;
     }
 
-    public boolean process(List<Producer> producers, String producerName, String itemName, Integer quantity) {
+    public boolean process(Producer producer, String itemName, Integer quantity) {
 
-
-
-        Map<String, Integer> products = producers.get(getIndex(producerName, producers)).getProducts();
+        Map<String, Integer> products = producer.getProducts();
         if (products.containsKey(itemName)) {
 
             return products.get(itemName) >= quantity;
@@ -39,13 +37,5 @@ public class Producer {
 
         return false;
     }
-    public int getIndex(String producerName, List<Producer> producers) {
-        for (int i = 0; i <= producers.size(); i++) {
-            Producer producer = producers.get(i);
-            if (producerName.equals(producer.getName())) {
-                return i;
-            }
-        }
-        return -2;
-    }
+
 }

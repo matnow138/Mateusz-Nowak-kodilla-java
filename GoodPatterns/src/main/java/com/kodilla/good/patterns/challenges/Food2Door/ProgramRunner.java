@@ -13,10 +13,10 @@ public class ProgramRunner {
         extraFoodShop.addProducts("Orange", 8);
         producers.add(extraFoodShop);
 
-        Order apples = new Order(extraFoodShop, producers, extraFoodShop.getName(), "Apple",5);
+        Order apples = new Order(extraFoodShop,producers, "Apple",5);
         System.out.println(apples.newOrder());
 
-        Order lemons = new Order(extraFoodShop, producers, extraFoodShop.getName(), "Lemon",5);
+        Order lemons = new Order(extraFoodShop, producers, "Lemon",5);
         System.out.println(lemons.newOrder());
 
 
