@@ -27,16 +27,25 @@ public class Producer {
         return products;
     }
 
-    public boolean process(Order orderRunner, String producerName, String itemName, Integer quantity) {
+    public boolean process(List<Producer> producers, String producerName, String itemName, Integer quantity) {
 
-        List<Producer> producers = orderRunner.getProducers();
 
-        Map<String, Integer> products = producers.get(orderRunner.getIndex(producerName)).getProducts();
+
+        Map<String, Integer> products = producers.get(getIndex(producerName, producers)).getProducts();
         if (products.containsKey(itemName)) {
 
             return products.get(itemName) >= quantity;
         }
 
         return false;
+    }
+    public int getIndex(String producerName, List<Producer> producers) {
+        for (int i = 0; i <= producers.size(); i++) {
+            Producer producer = producers.get(i);
+            if (producerName.equals(producer.getName())) {
+                return i;
+            }
+        }
+        return -2;
     }
 }

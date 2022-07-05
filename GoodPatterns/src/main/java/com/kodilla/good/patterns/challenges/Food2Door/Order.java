@@ -1,28 +1,26 @@
 package com.kodilla.good.patterns.challenges.Food2Door;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Order {
-    private final List<Producer> producers = new ArrayList<>();
 
+    final private List<Producer> producers;
+    final private String producerName;
+    final private String itemName;
+    final private Integer quantity;
+    final private Producer producer;
 
-
-    public void addProducer(Producer producer) {
-        producers.add(producer);
+    public Order(Producer producer, List<Producer> producers, String producerName, String itemName, Integer quantity) {
+        this.producer = producer;
+        this.producers = producers;
+        this.producerName = producerName;
+        this.itemName = itemName;
+        this.quantity = quantity;
     }
 
-    public int getIndex(String producerName) {
-        for (int i = 0; i <= producers.size(); i++) {
-            Producer producer = producers.get(i);
-            if (producerName.equals(producer.getName())) {
-                return i;
-            }
-        }
-        return -2;
-    }
+    public boolean newOrder() {
+        return producer.process(producers, producerName, itemName, quantity);
 
-    public List<Producer> getProducers() {
-        return producers;
     }
 }

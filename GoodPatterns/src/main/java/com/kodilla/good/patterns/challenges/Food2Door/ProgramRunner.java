@@ -1,17 +1,24 @@
 package com.kodilla.good.patterns.challenges.Food2Door;
 
-public class ProgramRunner {
-    public static void main(String[] args) {
+import java.util.ArrayList;
+import java.util.List;
 
-        Order order = new Order();
+public class ProgramRunner {
+
+    public static void main(String[] args) {
+        final List<Producer> producers = new ArrayList<>();
+
         Producer extraFoodShop= new Producer("ExtraFoodShop");
         extraFoodShop.addProducts("Apple", 5);
         extraFoodShop.addProducts("Orange", 8);
-        order.addProducer(extraFoodShop);
+        producers.add(extraFoodShop);
 
+        Order apples = new Order(extraFoodShop, producers, extraFoodShop.getName(), "Apple",5);
+        System.out.println(apples.newOrder());
 
-       System.out.println(order.getProducers().get(order.getIndex("ExtraFoodShop")).process(order,"ExtraFoodShop", "Apple", 3));
-       System.out.println(order.getProducers().get(order.getIndex("ExtraFoodShop")).process(order,"ExtraFoodShop", "Lemon", 8));
+        Order lemons = new Order(extraFoodShop, producers, extraFoodShop.getName(), "Lemon",5);
+        System.out.println(lemons.newOrder());
+
 
     }
 }
