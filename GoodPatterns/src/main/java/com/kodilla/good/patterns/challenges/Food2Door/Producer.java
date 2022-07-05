@@ -5,18 +5,20 @@ import java.util.List;
 import java.util.Map;
 
 public class Producer {
-    private String name;
-    private Map<String,Integer> products = new HashMap<>();
+    final private String name;
+    final private Map<String, Integer> products = new HashMap<>();
 
 
-    public Producer(String name) {
+    public Producer(final String name) {
         this.name = name;
 
     }
-    public void addProducts(String productName, Integer quantity){
+
+    public void addProducts(String productName, Integer quantity) {
         products.put(productName, quantity);
 
     }
+
     public String getName() {
         return name;
     }
@@ -24,6 +26,7 @@ public class Producer {
     public Map<String, Integer> getProducts() {
         return products;
     }
+
     public boolean process(Order orderRunner, String producerName, String itemName, Integer quantity) {
 
         List<Producer> producers = orderRunner.getProducers();

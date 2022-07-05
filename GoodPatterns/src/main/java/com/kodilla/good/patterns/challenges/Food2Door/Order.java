@@ -8,8 +8,8 @@ public class Order {
 
 
 
-    public void addProducer(String name) {
-        producers.add(new Producer(name));
+    public void addProducer(Producer producer) {
+        producers.add(producer);
     }
 
     public int getIndex(String producerName) {
@@ -20,12 +20,6 @@ public class Order {
             }
         }
         return -2;
-    }
-
-    public void addProducts(String producerName) {
-        int index = getIndex(producerName);
-        producers.get(index).addProducts("Apple", 6);
-        producers.get(index).addProducts("Orange", 5);
     }
 
     public List<Producer> getProducers() {

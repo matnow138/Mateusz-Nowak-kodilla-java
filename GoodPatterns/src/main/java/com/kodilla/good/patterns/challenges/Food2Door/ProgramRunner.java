@@ -4,11 +4,14 @@ public class ProgramRunner {
     public static void main(String[] args) {
 
         Order order = new Order();
-        order.addProducer("ExtraFoodShop");
-        order.addProducts("ExtraFoodShop");
+        Producer extraFoodShop= new Producer("ExtraFoodShop");
+        extraFoodShop.addProducts("Apple", 5);
+        extraFoodShop.addProducts("Orange", 8);
+        order.addProducer(extraFoodShop);
 
-        // OrderPlacement orderPlacement = new OrderPlacement();
-        System.out.println(Producer.process(order, "ExtraFoodShop", "Apple", 3));
-        System.out.println(Producer.process(order, "ExtraFoodShop", "Lemon", 3));
+
+       System.out.println(order.getProducers().get(order.getIndex("ExtraFoodShop")).process(order,"ExtraFoodShop", "Apple", 3));
+       System.out.println(order.getProducers().get(order.getIndex("ExtraFoodShop")).process(order,"ExtraFoodShop", "Lemon", 8));
+
     }
 }
