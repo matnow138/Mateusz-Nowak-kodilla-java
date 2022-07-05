@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Flights {
-    private Map<String, List> flightMap = new HashMap<>();
+    private Map<String, List<String>> flightMap = new HashMap<>();
 
     public void airportAdd(AirportClass airport){
         flightMap.put(airport.getName(), airport.getFlights());
     }
 
-    public Map<String, List> getFlightMap() {
+    public Map<String, List<String>> getFlightMap() {
         return flightMap;
     }
 

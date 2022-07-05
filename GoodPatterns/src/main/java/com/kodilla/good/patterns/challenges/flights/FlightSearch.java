@@ -29,7 +29,7 @@ public class FlightSearch {
             System.out.println("It Works!");
         }
        FindFlight findFlight = new FindFlight(flights.getFlightMap());
-        //System.out.println(findFlight.findFlight(startingAirport,destinationAirport));
+        System.out.println(findFlight.findFlight(startingAirport,destinationAirport));
 
     }
 }

@@ -10,7 +10,6 @@ public class Order {
 
     public Order(Producer producer, String itemName, Integer quantity) {
         this.producer = producer;
-
         this.itemName = itemName;
         this.quantity = quantity;
     }
