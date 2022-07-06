@@ -28,8 +28,9 @@ public class FlightSearch {
         if(flights.getFlightMap().containsKey(startingAirport) && flights.getFlightMap().get(startingAirport).contains(destinationAirport)){
             System.out.println("It Works!");
         }
-       FindFlight findFlight = new FindFlight(flights.getFlightMap());
-        System.out.println(findFlight.findFlight(startingAirport,destinationAirport));
+       FindFlight findFlight = new FindFlight(flights.getFlightMap(), startingAirport,destinationAirport);
+        System.out.println(findFlight.directFlight());
 
+        System.out.println(findFlight.flightsToTown());
     }
 }
