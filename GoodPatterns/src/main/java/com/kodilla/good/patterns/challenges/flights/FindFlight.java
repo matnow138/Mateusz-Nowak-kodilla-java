@@ -1,6 +1,8 @@
 package com.kodilla.good.patterns.challenges.flights;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class FindFlight {
@@ -35,21 +37,24 @@ public class FindFlight {
 
         if (!directFlight()) {
             if (!startingAirport.equals(destinationAirport)) {
-                for (var entry : flights.entrySet()) {
-                    if (entry.getKey().equals(startingAirport))
-                        for (String airport : entry.getValue()) {
-                            route(airport, destinationAirport);
+                if (flights.containsValue(destinationAirport)) {
+                    for (var entry : flights.entrySet()) {
+                        if (entry.getKey().equals(startingAirport))
+                            for (String airport : entry.getValue()) {
+                                route(airport, destinationAirport);
+                            }
+                        if (entry.getValue().contains(destinationAirport)) {
+                            if (!flightRoute.contains(entry.getKey())) {
+                                flightRoute.add(entry.getKey());
+                            }
                         }
-                    if (entry.getValue().contains(destinationAirport)) {
-                        if (!flightRoute.contains(entry.getKey())) {
-                            flightRoute.add(entry.getKey());
-                        }
+
+
                     }
-
-
-                }
+                }else{
+                    System.out.println("There is no possible way");
             }
-
+            }
         }
 
     }
