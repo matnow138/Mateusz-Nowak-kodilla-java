@@ -1,12 +1,12 @@
 package com.kodilla.good.patterns.challenges.flights;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Map;
+
 
 public class AirportClass{
-    private String name;
-    private List<String> flights;
+    final private String name;
+    final private List<String> flights;
 
     public AirportClass(String name, List<String> flights){
         this.flights=flights;

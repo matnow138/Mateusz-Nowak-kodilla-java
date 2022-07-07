@@ -1,13 +1,13 @@
 package com.kodilla.good.patterns.challenges.flights;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class FindFlight {
     Map<String, List<String>> flights;
     String startingAirport;
     String destinationAirport;
+    List<String> flightRoute = new ArrayList<>();
 
     public FindFlight(Map<String, List<String>> flights, String startingAirport, String destinationAirport) {
         this.flights = flights;
@@ -15,27 +15,55 @@ public class FindFlight {
         this.destinationAirport = destinationAirport;
     }
 
-    public Boolean directFlight(){
+    public boolean directFlight() {
         return flights.entrySet().stream()
                 .filter(startAirport -> startAirport.getKey().equals(startingAirport))
                 .anyMatch(target -> target.getValue().contains(destinationAirport));
 
-}
-   /* public List<String> flightsToTown(){
+    }
+
+    public List<String> flightsToTown() {
         return flights.entrySet().stream()
-                .map(startAirport -> startAirport.getValue())
-                .flatMap(Collection::stream)
-                .filter(target -> target.contains(startingAirport))
-                .map(airport -> airport.g)
+                .filter(entry -> entry.getValue().contains(startingAirport))
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
-    }*/
-    public List<String> flightsToTown(){
-        return flights.entrySet().stream()
-                .map(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey))
+
 
     }
 
+    public void route(String startingAirport, String destinationAirport) {
 
+        if (!directFlight()) {
+            if (!startingAirport.equals(destinationAirport)) {
+                for (var entry : flights.entrySet()) {
+                    if (entry.getKey().equals(startingAirport))
+                        for (String airport : entry.getValue()) {
+                            route(airport, destinationAirport);
+                        }
+                    if (entry.getValue().contains(destinationAirport)) {
+                        if (!flightRoute.contains(entry.getKey())) {
+                            flightRoute.add(entry.getKey());
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+
+    }
+
+    public void connectingFlight(String startingAirport, String destinationAirport) {
+
+
+        route(startingAirport, destinationAirport);
+
+        for (int i = 0; i <= flightRoute.size() - 1; i++) {
+            System.out.println("You can fly to " + destinationAirport + " from " + startingAirport + " by " + flightRoute.get(i));
+        }
+
+    }
 
 
 }

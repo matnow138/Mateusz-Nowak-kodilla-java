@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Flights {
-    private Map<String, List<String>> flightMap = new HashMap<>();
+    final private Map<String, List<String>> flightMap = new HashMap<>();
 
     public void airportAdd(AirportClass airport){
         flightMap.put(airport.getName(), airport.getFlights());
