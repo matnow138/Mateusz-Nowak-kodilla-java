@@ -37,7 +37,7 @@ public class FindFlight {
 
         if (!directFlight()) {
             if (!startingAirport.equals(destinationAirport)) {
-                if (flights.containsValue(destinationAirport)) {
+                if (ifExist(startingAirport) && ifExist(destinationAirport) ) {
                     for (var entry : flights.entrySet()) {
                         if (entry.getKey().equals(startingAirport))
                             for (String airport : entry.getValue()) {
@@ -68,6 +68,20 @@ public class FindFlight {
             System.out.println("You can fly to " + destinationAirport + " from " + startingAirport + " by " + flightRoute.get(i));
         }
 
+    }
+    public boolean ifExist(String airport){
+        for(var entry:flights.entrySet()){
+            if(entry.getKey().equals(airport)){
+                return true;
+            }
+            for(String airportName: entry.getValue()){
+                if(airportName.equals(airport)){
+                    return true;
+                }
+
+            }
+        }
+        return false;
     }
 
 
