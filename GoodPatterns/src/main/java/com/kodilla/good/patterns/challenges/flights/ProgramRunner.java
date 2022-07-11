@@ -20,6 +20,6 @@ public class ProgramRunner {
         System.out.println("You can fly to " + startingAirport + " from " + findFlightsToTown.flightsToTown());
 
         FindFlight findConnectionFlight = new FindFlight(flights.getFlightMap(), startingAirport, "Szczecin");
-        findConnectionFlight.connectingFlight(startingAirport, "Szczecin");
+        findConnectionFlight.connectingFlight(startingAirport, "zakopane");
     }
 }

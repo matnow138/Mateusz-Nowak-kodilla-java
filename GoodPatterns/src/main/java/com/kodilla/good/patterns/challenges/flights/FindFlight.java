@@ -48,8 +48,6 @@ public class FindFlight {
                                 flightRoute.add(entry.getKey());
                             }
                         }
-
-
                     }
                 }else{
                     System.out.println("There is no possible way");
