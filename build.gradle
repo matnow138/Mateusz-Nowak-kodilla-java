@@ -29,3 +29,8 @@ bootJar {
 jar {
     enabled = true
 }
+allprojects {
+    project.ext.versions = [
+            rxJava: '1.2.9'
+    ]
+}
