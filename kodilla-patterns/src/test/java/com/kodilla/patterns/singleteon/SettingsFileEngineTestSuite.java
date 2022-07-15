@@ -14,7 +14,7 @@ public class SettingsFileEngineTestSuite {
 
     @BeforeAll
     public static void openSettingsFile(){
-        settingFileEngine = new SettingFileEngine();
+        settingFileEngine = SettingFileEngine.INSTANCE;
         settingFileEngine.open("myapp.settings");
     }
 
@@ -30,7 +30,7 @@ public class SettingsFileEngineTestSuite {
         String fileName = settingFileEngine.getFileName();
         System.out.println("Opened: " + fileName);
         //Then
-        assertEquals("Myapp.settings",fileName);
+        assertEquals("myapp.settings",fileName);
     }
     @Test
     void testLoadSettings() {
