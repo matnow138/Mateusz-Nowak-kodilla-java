@@ -29,6 +29,16 @@ public final class Library extends Prototype<Library>
         return super.clone();
     }
 
+    @Override
+    public String toString() {
+        String s = name + "\n";
+
+       for(Book book:books){
+           s+=book.getTitle() + " " + book.getAuthor() + " " + book.getPublicationDate() + "\n";
+       }
+       return s;
+    }
+
     public Library deepCopy() throws CloneNotSupportedException{
         Library clonedLibrary = super.clone();
         clonedLibrary.books = new HashSet<>();
