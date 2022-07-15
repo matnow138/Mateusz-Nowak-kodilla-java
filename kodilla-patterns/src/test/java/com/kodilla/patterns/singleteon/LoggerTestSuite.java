@@ -19,7 +19,7 @@ public class LoggerTestSuite {
     }
 
     @Test
-    void testGetLasLog(){
+    void testGetLastLog(){
         //Given
         //When
         String log = logger.getLastLog();
