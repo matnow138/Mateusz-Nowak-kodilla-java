@@ -17,7 +17,7 @@ public class BigmacTestSuite {
         //Then
         assertEquals(3, howManyIngredients);
         assertEquals("Bun with sesame", bun);
-        assertEquals(3,3);
+        assertEquals(3,burgers);
 
 
 
