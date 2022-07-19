@@ -20,6 +20,14 @@ public class Bigmac {
         return ingredients;
     }
 
+    public String getBun(){
+        return bun.getBun();
+    }
+
+    public int getBurgers(){
+        return burgers;
+    }
+
     @Override
     public String toString() {
         return "Your Bigmac consists of:\n" + "Bun: " + bun + "\n" + "Quantity of burgers: " + burgers + "\n" + "Sauce: " + sauce + "\n" + "Ingredients: " + ingredients;
