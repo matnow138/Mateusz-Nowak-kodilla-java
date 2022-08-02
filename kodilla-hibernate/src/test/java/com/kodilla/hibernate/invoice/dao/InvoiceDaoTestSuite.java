@@ -26,11 +26,11 @@ public class InvoiceDaoTestSuite {
         Product banana = new Product("banana");
 
         Invoice invoice1 = new Invoice("6");
-        Invoice invoice2 = new Invoice("2");
-        Invoice invoice3 = new Invoice("3");
+
 
         invoice1.getItems().add(new Item(apple, BigDecimal.valueOf(5), 3));
-
+        invoice1.getItems().add(new Item(orange, BigDecimal.valueOf(8), 2));
+        invoice1.getItems().add(new Item(banana, BigDecimal.valueOf(1), 9));
         //When
         invoiceDao.save(invoice1);
         int id = invoice1.getId();
