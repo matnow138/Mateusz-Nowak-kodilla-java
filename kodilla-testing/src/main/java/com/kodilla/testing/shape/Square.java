@@ -1,8 +1,8 @@
 package com.kodilla.testing.shape;
 
 public class Square implements Shape{
-    private String name;
-    private double a;
+    private final String name;
+    private final double a;
 
     public Square(String name, double a){
         this.name=name;

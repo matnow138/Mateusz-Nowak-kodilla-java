@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class PriceList {
 
-    private static Map<Season, BigDecimal> singleBedPrices = Map.of(
+    private static final Map<Season, BigDecimal> singleBedPrices = Map.of(
             Season.LOW, new BigDecimal(250),
             Season.HIGH, new BigDecimal(320),
             Season.HOLIDAY, new BigDecimal(400)
     );
 
-    private static Map<Season, BigDecimal> doubleBedPrices = Map.of(
+    private static final Map<Season, BigDecimal> doubleBedPrices = Map.of(
             Season.LOW  , new BigDecimal(350),
             Season.HIGH, new BigDecimal(400),
             Season.HOLIDAY, new BigDecimal(500)

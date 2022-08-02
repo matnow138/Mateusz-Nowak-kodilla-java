@@ -18,7 +18,7 @@ public class RpsRunner {
     private final Shapes scissors = new Shapes("scissors", Arrays.asList("paper", "lizard"));
     private final Shapes lizard = new Shapes("lizard", Arrays.asList("spock", "paper"));
     private final Shapes spock = new Shapes("spock", Arrays.asList("scissors", "rock"));
-    private Random random = new Random();
+    private final Random random = new Random();
     public static void main(String[] args) {
         new RpsRunner().run();
 

@@ -12,7 +12,7 @@ public final class World {
 
 
     public World(List<Continent> world) {
-        this.world = world;
+        World.world = world;
     }
 
     public BigDecimal getPeopleQuantity(){

@@ -1,8 +1,8 @@
 package com.kodilla.good.patterns.challenges;
 
 public class OrderDto {
-    private User user;
-    private boolean isAvailable;
+    private final User user;
+    private final boolean isAvailable;
 
 
 

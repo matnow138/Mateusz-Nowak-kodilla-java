@@ -26,7 +26,7 @@ public class ProductOrderService {
 
     }
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         User user = new User("Jan","Kowalski","Poznań","jan.kowalski@mail.com","123456789");
         Item item = new Item("Drzwi", 5);
        OrderRequest orderRequest = new OrderRequest(user, item);

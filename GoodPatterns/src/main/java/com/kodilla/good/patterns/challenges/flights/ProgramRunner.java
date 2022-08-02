@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges.flights;
 
 public class ProgramRunner {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Flights flights = new Flights();
         FlightSearch flightSearch = new FlightSearch();
         flightSearch.airportAdd(flights);

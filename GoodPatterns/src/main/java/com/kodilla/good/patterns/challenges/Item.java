@@ -1,8 +1,8 @@
 package com.kodilla.good.patterns.challenges;
 
 public class Item {
-    private String name;
-    private int quantity;
+    private final String name;
+    private final int quantity;
 
     public Item(String name, int quantity) {
         this.name = name;

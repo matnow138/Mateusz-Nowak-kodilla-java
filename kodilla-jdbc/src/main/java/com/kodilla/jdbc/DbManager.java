@@ -9,7 +9,7 @@ public enum DbManager {
 
     INSTANCE;                                                  // [1]
 
-    private Connection conn;                                   // [2]
+    private final Connection conn;                                   // [2]
 
     DbManager() {                                              // [3]
         Properties connectionProps = new Properties();          // [4]
