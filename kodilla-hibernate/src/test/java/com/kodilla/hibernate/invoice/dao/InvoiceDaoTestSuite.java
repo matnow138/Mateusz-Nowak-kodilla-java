@@ -34,12 +34,12 @@ public class InvoiceDaoTestSuite {
         invoice1.getItems().add(new Item(orange, BigDecimal.valueOf(8), 2));
         invoice1.getItems().add(new Item(banana, BigDecimal.valueOf(1), 9));
         //When
-        invoiceDao.save(invoice1);
+        Invoice savedInvoice = invoiceDao.save(invoice1);
         int id = invoice1.getId();
-        List<Item> items = invoice1.getItems();
-        Product product1 = invoice1.getItems().get(0).getProduct();
-        Product product2 = invoice1.getItems().get(1).getProduct();
-        Product product3 = invoice1.getItems().get(2).getProduct();
+        List<Item> items = savedInvoice.getItems();
+        Product product1 = savedInvoice.getItems().get(0).getProduct();
+        Product product2 = savedInvoice.getItems().get(1).getProduct();
+        Product product3 = savedInvoice.getItems().get(2).getProduct();
 
 
         //Then
