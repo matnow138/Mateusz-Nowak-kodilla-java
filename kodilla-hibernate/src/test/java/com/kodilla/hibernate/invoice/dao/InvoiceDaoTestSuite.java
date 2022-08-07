@@ -6,6 +6,7 @@ import com.kodilla.hibernate.invoice.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DuplicateKeyException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,29 +28,30 @@ public class InvoiceDaoTestSuite {
         Product orange = new Product("Orange");
         Product banana = new Product("banana");
 
-        Invoice invoice1 = new Invoice("6");
+        Invoice invoice1 = new Invoice("1");
 
 
         invoice1.getItems().add(new Item(apple, BigDecimal.valueOf(5), 3));
         invoice1.getItems().add(new Item(orange, BigDecimal.valueOf(8), 2));
         invoice1.getItems().add(new Item(banana, BigDecimal.valueOf(1), 9));
         //When
+
         Invoice savedInvoice = invoiceDao.save(invoice1);
-        int id = invoice1.getId();
-        List<Item> items = savedInvoice.getItems();
+
+       // List<Item> items = savedInvoice.getItems();
         Product product1 = savedInvoice.getItems().get(0).getProduct();
         Product product2 = savedInvoice.getItems().get(1).getProduct();
         Product product3 = savedInvoice.getItems().get(2).getProduct();
 
 
         //Then
-        assertNotEquals(0, id);
-        assertEquals(3, items.size());
+        assertNotEquals(0, savedInvoice.getId());
+        assertEquals(3, savedInvoice.getItems().size());
         assertEquals("Apple",product1.getName());
         assertEquals("Orange", product2.getName());
         assertEquals("banana",product3.getName());
         //CleanUp
-        invoiceDao.deleteById(id);
+        invoiceDao.deleteById(invoice1.getId());
 
 
     }

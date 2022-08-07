@@ -19,6 +19,16 @@ public class Invoice {
     public Invoice() {
 
     }
+    @Id
+    @NotNull
+    @GeneratedValue
+    @Column(name = "ID", unique = true)
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @NotNull
     @Column(name = "INVOICE_NUMBER", unique = true)
@@ -30,17 +40,9 @@ public class Invoice {
         this.number = number;
     }
 
-    @Id
-    @NotNull
-    @GeneratedValue
-    @Column(name = "ID", unique = true)
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
+
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "INVOICE_ID")

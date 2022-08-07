@@ -51,14 +51,15 @@ class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
         List<Employee> employeesWithName = employeeDao.retrieveEmployeesWithName("Smith");
-        List<Company> companiesWithString = companyDao.retrieveCompaniesWithString("Software Machine");
+        List<Company> companiesWithString = companyDao.retrieveCompaniesWithString("Sof");
 
         //Then
         assertNotEquals(0, softwareMachineId);
         assertNotEquals(0, dataMaestersId);
         assertNotEquals(0, greyMatterId);
         assertNotEquals(0, employeesWithName.size());
-        assertNotEquals(0, companiesWithString.size());
+        assertEquals(companiesWithString.get(0).getName(), softwareMachine.getName());
+//        assertNotEquals(0, companiesWithString.size());
 
         //CleanUp
         try {
