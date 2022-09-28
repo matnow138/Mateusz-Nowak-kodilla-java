@@ -1,9 +1,9 @@
 package com.kodilla.hibernate.manytomany.facade;
 
-import com.kodilla.hibernate.manytomany.Company;
-import com.kodilla.hibernate.manytomany.Employee;
-import com.kodilla.hibernate.manytomany.dao.CompanyDao;
-import com.kodilla.hibernate.manytomany.dao.EmployeeDao;
+
+
+import com.kodilla.hibernate.manytomany.facade.api.CompanyDtoDao;
+import com.kodilla.hibernate.manytomany.facade.api.EmployeeDtoDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,32 +16,39 @@ public class ManyToManyFacade {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ManyToManyFacade.class);
     @Autowired
-    private CompanyDao companyDao;
+    private CompanyDtoDao companyDtoDao;
     @Autowired
-    private EmployeeDao employeeDao;
+    private EmployeeDtoDao employeeDtoDao;
 
-    public ManyToManyFacade(CompanyDao companyDao, EmployeeDao employeeDao){
-        this.companyDao = companyDao;
-        this.employeeDao = employeeDao;
+
+
+    public ManyToManyFacade(CompanyDtoDao companyDtoDao, EmployeeDtoDao employeeDtoDao){
+        this.companyDtoDao = companyDtoDao;
+        this.employeeDtoDao = employeeDtoDao;
 
     }
 
-    public void saveCompany(String name){
-        companyDao.save(new Company(name));
+
+
+    public void saveCompany(CompanyDto companyDto){
+        companyDtoDao.save(companyDto);
     }
 
-    public void saveEmployee(String name, String surname){
-        employeeDao.save(new Employee(name, surname));
+
+
+
+    public void saveEmployee(EmployeeDto employee){
+        employeeDtoDao.save(employee);
     }
 
 
-    public List<Company> findCompanies(String name){
-       List<Company> companies = companyDao.findCompaniesByNameContains(name);
+    public List<CompanyDto> findCompanies(String name){
+       List<CompanyDto> companies = companyDtoDao.findCompaniesByNameContains(name);
        return companies;
     }
 
-    public List<Employee> findEmployee(String name){
-        List<Employee> employees = employeeDao.findEmployeeByLastnameContains(name);
+    public List<EmployeeDto> findEmployee(String name){
+        List<EmployeeDto> employees = employeeDtoDao.findEmployeeByLastnameContains(name);
         return employees;
     }
 
