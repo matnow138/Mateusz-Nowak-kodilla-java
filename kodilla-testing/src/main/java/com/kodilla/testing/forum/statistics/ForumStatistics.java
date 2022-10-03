@@ -3,7 +3,7 @@ package com.kodilla.testing.forum.statistics;
 import java.util.List;
 
 public class ForumStatistics {
-    Statistics statistics;
+    //Statistics statistics;
     int usersCount;
     int postsCount;
     int commentsCount;
@@ -13,10 +13,10 @@ public class ForumStatistics {
     double averageCommentsUserCount;
     double averageCommentsPostsCount;
 
-   public ForumStatistics(Statistics statistics) {
+   /*public ForumStatistics(Statistics statistics) {
         this.statistics=statistics;
 
-    }
+    }*/
 
 
 
@@ -90,5 +90,21 @@ public class ForumStatistics {
 
     public double getAverageCommentsPostsCount() {
         return averageCommentsPostsCount;
+    }
+
+    public int getUsersCount() {
+        return usersCount;
+    }
+
+    public int getPostsCount() {
+        return postsCount;
+    }
+
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+
+    public List<String> getUsersName() {
+        return usersName;
     }
 }

@@ -48,20 +48,22 @@ public class StatisticTestSuite {
         }
         postsCount=0;
         commentsCount=10;
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
         when(statisticsMock.usersNames()).thenReturn(usersName);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
         //When
 
         forumStatistics.calculateAdvStatistics(statisticsMock);
-        //int postsCount = forumStatistics.getPostsCount();
 
 
         //Then
         Assertions.assertEquals(0, forumStatistics.getAveragePostsUsersCount());
         Assertions.assertEquals(1, forumStatistics.getAverageCommentsUserCount());
         Assertions.assertEquals(-1,forumStatistics.getAverageCommentsPostsCount());
+        Assertions.assertEquals(0, forumStatistics.getPostsCount());
+        Assertions.assertEquals(10,forumStatistics.getCommentsCount());
+        Assertions.assertEquals(10,forumStatistics.getUsersName().size());
 
 
     }
@@ -74,7 +76,7 @@ public class StatisticTestSuite {
         }
         postsCount=1000;
         commentsCount=500;
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
         when(statisticsMock.usersNames()).thenReturn(usersName);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
@@ -87,6 +89,9 @@ public class StatisticTestSuite {
         Assertions.assertEquals(1.0, forumStatistics.getAveragePostsUsersCount());
         Assertions.assertEquals(0.5, forumStatistics.getAverageCommentsUserCount());
         Assertions.assertEquals(0.5,forumStatistics.getAverageCommentsPostsCount());
+        Assertions.assertEquals(1000, forumStatistics.getPostsCount());
+        Assertions.assertEquals(500,forumStatistics.getCommentsCount());
+        Assertions.assertEquals(1000,forumStatistics.getUsersName().size());
 
     }
 
@@ -99,7 +104,7 @@ public class StatisticTestSuite {
         }
         postsCount=50;
         commentsCount=0;
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
         when(statisticsMock.usersNames()).thenReturn(usersName);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
@@ -112,6 +117,9 @@ public class StatisticTestSuite {
         Assertions.assertEquals(5.0, forumStatistics.getAveragePostsUsersCount());
         Assertions.assertEquals(0.0, forumStatistics.getAverageCommentsUserCount());
         Assertions.assertEquals(0.0,forumStatistics.getAverageCommentsPostsCount());
+        Assertions.assertEquals(50, forumStatistics.getPostsCount());
+        Assertions.assertEquals(0,forumStatistics.getCommentsCount());
+        Assertions.assertEquals(10,forumStatistics.getUsersName().size());
 
     }
     @DisplayName("Test for quantity of comments < quantity of posts")
@@ -123,7 +131,7 @@ public class StatisticTestSuite {
         }
         postsCount=50;
         commentsCount=22;
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
         when(statisticsMock.usersNames()).thenReturn(usersName);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
@@ -136,6 +144,9 @@ public class StatisticTestSuite {
         Assertions.assertEquals(5.0, forumStatistics.getAveragePostsUsersCount());
         Assertions.assertEquals(2.2, forumStatistics.getAverageCommentsUserCount());
         Assertions.assertEquals(0.44,forumStatistics.getAverageCommentsPostsCount());
+        Assertions.assertEquals(50, forumStatistics.getPostsCount());
+        Assertions.assertEquals(22,forumStatistics.getCommentsCount());
+        Assertions.assertEquals(10,forumStatistics.getUsersName().size());
 
     }
     @DisplayName("Test for quantity of comments > quantity of posts")
@@ -147,7 +158,7 @@ public class StatisticTestSuite {
         }
         postsCount=30;
         commentsCount=54;
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
         when(statisticsMock.usersNames()).thenReturn(usersName);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
@@ -160,6 +171,9 @@ public class StatisticTestSuite {
         Assertions.assertEquals(3.0, forumStatistics.getAveragePostsUsersCount());
         Assertions.assertEquals(5.4, forumStatistics.getAverageCommentsUserCount());
         Assertions.assertEquals(1.8,forumStatistics.getAverageCommentsPostsCount());
+        Assertions.assertEquals(30, forumStatistics.getPostsCount());
+        Assertions.assertEquals(54,forumStatistics.getCommentsCount());
+        Assertions.assertEquals(10,forumStatistics.getUsersName().size());
 
     }
     @DisplayName("Test for 0 users")
@@ -171,7 +185,7 @@ public class StatisticTestSuite {
         }
         postsCount=30;
         commentsCount=54;
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
         when(statisticsMock.usersNames()).thenReturn(usersName);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
@@ -184,6 +198,9 @@ public class StatisticTestSuite {
         Assertions.assertEquals(-1, forumStatistics.getAveragePostsUsersCount());
         Assertions.assertEquals(-1, forumStatistics.getAverageCommentsUserCount());
         Assertions.assertEquals(1.8,forumStatistics.getAverageCommentsPostsCount());
+        Assertions.assertEquals(30, forumStatistics.getPostsCount());
+        Assertions.assertEquals(54,forumStatistics.getCommentsCount());
+        Assertions.assertEquals(0,forumStatistics.getUsersName().size());
 
     }
     @DisplayName("Test for 100 users")
@@ -195,7 +212,7 @@ public class StatisticTestSuite {
         }
         postsCount=50;
         commentsCount=50;
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
         when(statisticsMock.usersNames()).thenReturn(usersName);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
@@ -208,9 +225,10 @@ public class StatisticTestSuite {
         Assertions.assertEquals(0.5, forumStatistics.getAveragePostsUsersCount());
         Assertions.assertEquals(0.5, forumStatistics.getAverageCommentsUserCount());
         Assertions.assertEquals(1.0,forumStatistics.getAverageCommentsPostsCount());
-        Assertions.assertEquals("Average number of posts per user: 0.5\n"+
-                "Average number of comments per user: 0.5\n"+
-                "Average number of comments per posts: 1.0", forumStatistics.showStatistics());
+        Assertions.assertEquals(50, forumStatistics.getPostsCount());
+        Assertions.assertEquals(50,forumStatistics.getCommentsCount());
+        Assertions.assertEquals(100,forumStatistics.getUsersName().size());
+
     }
 
 
