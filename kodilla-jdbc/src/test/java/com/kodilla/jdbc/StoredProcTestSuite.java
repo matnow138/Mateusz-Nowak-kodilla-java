@@ -44,7 +44,7 @@ public class StoredProcTestSuite {
         Statement statement=dbManager.getConnection().createStatement();
         statement.executeUpdate(sqlUpdate);
         String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM books WHERE bestseller=0";
-        ResultSet rs = statemt.executeQuery(sqlCheckTable);
+        ResultSet rs = statement.executeQuery(sqlCheckTable);
         Statement secondStatement = dbManager.getConnection().createStatement();
         // When
         String sqlProcedureCall = "CALL UpdateBestsellers()";
