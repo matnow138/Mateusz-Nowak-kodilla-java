@@ -6,17 +6,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class FacebookTestingApp {
+public class FacebookTestingApp  {
+    public static String name = "firstname";
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException{
         WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driver.get("https://facebook.com");
 
-
+        driver.findElement(By.xpath("//*[contains(@id, 'u_0_e')]")).click();
         driver.findElement(By.xpath("//*[contains(@id, 'u_0_0_')]")).click();
 
         Thread.sleep(1000);
-        // while(!driver.findElement(By.xpath("//*[contains(@id, 'u_3_b_')]")).isDisplayed());
+       // while(!driver.findElement(By.xpath("//*[contains(@id, 'u_3_b_')]")).isDisplayed());
         WebElement searchField = driver.findElement(By.xpath("//*[contains(@id, 'u_3_b_')]"));      // [5]
         searchField.sendKeys("Jan");
 
@@ -46,6 +47,13 @@ public class FacebookTestingApp {
 
         driver.findElement(By.xpath("//*[contains(@id, 'u_3_5_')]")).click();
 
+
+
+
+
+    }
+
+    public void cookieAccept(){
 
     }
 }
